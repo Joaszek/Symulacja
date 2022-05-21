@@ -1,7 +1,7 @@
 public class Map {
     private int size_x;
     private int size_y;
-    public void set_Map()
+    public void set_Map()   //mapa 30x30
     {
 
     }

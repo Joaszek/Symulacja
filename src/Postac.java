@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 public abstract class Postac {
+    //atakuja tylko jak sa na tym samym polu
+
     public String name;
     public double hp;
     public double attack;

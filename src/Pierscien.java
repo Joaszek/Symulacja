@@ -1,4 +1,4 @@
 public class Pierscien {
     String power;
-    public void Power(){};
+    public void Power(){};  //do wymyslenia
 }
