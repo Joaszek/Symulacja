@@ -2,7 +2,8 @@ public class Bohater extends Postac implements Refuse_to_eat{
     //rusza sie jak krol w szachach
     //atakuja tylko jak sa na tym samym polu
 
-
+    public int x;
+    public int y;
     public void Eat(){};
     public int bonus_dmg_from_babcia;
     public int kills;
