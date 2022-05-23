@@ -22,5 +22,6 @@ public class Main {
         //mapa
         //bohater
         //rozmieszczenie orkow i ologow
+        //czemu amazon robi jdk
     }
 }
