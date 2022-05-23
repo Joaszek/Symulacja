@@ -16,5 +16,16 @@ public class Bohater extends Postac implements Refuse_to_eat{
     @Override
     public boolean Eat_or_die() {
         return false;
+    }   //co?
+
+
+    public Bohater(double hp, double attack, int magic, double crit_chance){       //parametry beda brane z commandline
+        this.hp = hp;
+        this.attack = attack;
+        this.magic = magic;
+        this.crit_chance = crit_chance;
+        has_ring = false;
+        has_babcia = false;
     }
+
 }

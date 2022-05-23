@@ -12,6 +12,7 @@ public class Map {
     Pool[][] map;
     private Bohater PEPE;
     private Babcia_Sida babcia_sida;
+    static int [][] tab = new int[30][30];     //przechowuje informacje o polozeniu mobków
 
     Map(int x, int y, int flowers, int ologs, int orks, Bohater PEPE, Babcia_Sida babcia_sida)
     {

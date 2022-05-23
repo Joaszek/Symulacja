@@ -1,3 +1,4 @@
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.concurrent.Flow;
 
@@ -19,6 +20,10 @@ public class Pool {
     {
         is_empty=true;
     }
+
+    ArrayList<Ork> Orks = new ArrayList<>();
+    //ologow tez
+    ArrayList<Bohater> bohater = new ArrayList<>();
 
     public void set_Orks()
     {
