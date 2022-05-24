@@ -12,16 +12,18 @@ public class Main {
 
 
         Babcia_Sida babcia_sida= new Babcia_Sida();
-        //Bohater PEPE = new Bohater(Double.parseDouble(args[1]), Double.parseDouble(args[2]), Integer.parseInt(args[3]), Double.parseDouble(args[4]));
-        Bohater PEPE = new Bohater(30,30,30,30);
+        Bohater PEPE = new Bohater(Double.parseDouble(args[0]), Double.parseDouble(args[1]), Integer.parseInt(args[2]), Double.parseDouble(args[3]));
+        //Bohater PEPE = new Bohater(30,30,30,30);
         int flowers,orks,ologs;
-        Scanner scanner = new Scanner(System.in);
-        /*
-        orks = Integer.parseInt(args[5]);
-        ologs = Integer.parseInt(args[6]);
-        flowers= Integer.parseInt(args[7]);
-        */
-        new Map(30,30,30,30,30,PEPE,babcia_sida);
+        //Scanner scanner = new Scanner(System.in);
+
+        orks = Integer.parseInt(args[4]);
+        ologs = Integer.parseInt(args[5]);
+        flowers= Integer.parseInt(args[6]);
+
+        System.out.println("parametry: " + args[0] + args[1] + args[2] + args[3] + args[4] + args[5] + args[6]);
+
+        new Map(30,30,flowers,ologs,orks,PEPE,babcia_sida);
         //mapa
         //bohater
         //rozmieszczenie orkow i ologow

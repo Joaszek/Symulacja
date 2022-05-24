@@ -6,7 +6,7 @@ public class Ork extends Postac{
 
 
     Ork(){
-        skill_issue = rand.nextDouble();    //losuje od 0 do 1;
-        chance_to_see = rand.nextInt(101);  //szansa na zobaczenie I guess
+        skill_issue = rand.nextDouble();                //losuje od 0 do 1;
+        chance_to_see = rand.nextInt(101);       //szansa na zobaczenie I guess
     }
 }

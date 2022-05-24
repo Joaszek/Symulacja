@@ -12,7 +12,10 @@ public class Map {
     Pool[][] map;
     private Bohater PEPE;
     private Babcia_Sida babcia_sida;
-    static int [][] tab = new int[30][30];     //przechowuje informacje o polozeniu mobków
+    ArrayList<Ork>Orkowie = new ArrayList<>();
+    ArrayList<Olog>Ologi = new ArrayList<>();
+    ArrayList<Babcia_MAD>babcie = new ArrayList<>();
+    ArrayList<Flower>kwiatki = new ArrayList<>();
 
     Map(int x, int y, int flowers, int ologs, int orks, Bohater PEPE, Babcia_Sida babcia_sida)
     {
@@ -38,22 +41,98 @@ public class Map {
         {
             PEPE.x=rand_1;
             PEPE.y=rand_2;
+            map[rand_1][rand_2].is_empty = false;
+            map[rand_1][rand_2].id = 1;
         }
         //add babcia sida
-        rand_1 = random.nextInt();
-        rand_2 = random.nextInt();
-
+        rand_1 = random.nextInt(30);
+        rand_2 = random.nextInt(30);
+        if(map[rand_1][rand_2].is_empty)
+        {
+            babcia_sida.x=rand_1;
+            babcia_sida.y=rand_2;
+            map[rand_1][rand_2].is_empty = false;
+            map[rand_1][rand_2].id = 2;
+        }
         //add orks
+        for(int i = 0; i<orks; i++){
+            int k = 0;
+            while(k==0) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
+                rand_1 = random.nextInt(30);
+                rand_2 = random.nextInt(30);
+                if(map[rand_1][rand_2].is_empty){
+                    Orkowie.add(new Ork());
+                    map[rand_1][rand_2].is_empty = false;
+                    map[rand_1][rand_2].id = 4;
+                    k=1;    //zamyka
+                }
+            }
+        }
 
         //add ologs
-
+        for(int i = 0; i<ologs; i++){
+            int k = 0;
+            while(k==0) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
+                rand_1 = random.nextInt(30);
+                rand_2 = random.nextInt(30);
+                if(map[rand_1][rand_2].is_empty){
+                    Ologi.add(new Olog());
+                    map[rand_1][rand_2].is_empty = false;
+                    map[rand_1][rand_2].id=5;
+                    k=1;    //zamyka
+                }
+            }
+        }
         //add babcia MAD
+        for(int i = 0; i<10; i++){
+            int k = 0;
+            while(k==0) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
+                rand_1 = random.nextInt(30);
+                rand_2 = random.nextInt(30);
+                if(map[rand_1][rand_2].is_empty){
+                    babcie.add(new Babcia_MAD());
+                    map[rand_1][rand_2].is_empty = false;
+                    map[rand_1][rand_2].id = 3;
+                    k=1;    //zamyka
+                }
+            }
+        }
 
         //add flowers
-
+        for(int i = 0; i<flowers; i++){
+            int k = 0;
+            while(k==0) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
+                rand_1 = random.nextInt(30);
+                rand_2 = random.nextInt(30);
+                if(map[rand_1][rand_2].is_empty){
+                    kwiatki.add(new Flower());
+                    map[rand_1][rand_2].is_empty = false;
+                    map[rand_1][rand_2].id=6;
+                    k=1;    //zamyka
+                }
+            }
+        }
         //add pierscien
 
+        if(map[rand_1][rand_2].is_empty){
+            new Pierscien();
+            map[rand_1][rand_2].id = 8;
+        }
         //add item
+
+       /* for(int i = 0; i<item; i++){      //to do itema potem
+            int k = 0;
+            while(k==0) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
+                rand_1 = random.nextInt(30);
+                rand_2 = random.nextInt(30);
+                if(map[rand_1][rand_2].is_empty){
+                    kwiatki.add(new Flower());
+                    map[rand_1][rand_2].is_empty = false;
+                    map[rand_1][rand_2].id=6;
+                    k=1;    //zamyka
+                }
+            }
+        }*/
 
 
 

@@ -7,7 +7,7 @@ public abstract class Postac{
     Random rand = new Random();
     public String name;
     public double hp;
-    public double attack;
+    public double attack=1; //tymczasowo
     public double crit_chance;
     public ArrayList<Item> items;
     public void fight(){};

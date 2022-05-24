@@ -18,6 +18,7 @@ public class Pool {
     ArrayList<Olog> Ologs;
     ArrayList<Bohater> bohater;
     int rand;
+    int id;
     Random random = new Random();
     public boolean is_empty;
     Pool()
