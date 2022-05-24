@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         /*
-        PARAMETRY NA TERAZ: HP,ATTACK,MAGIC,CRIT,ORKS,OLOGS,FLOWERS
+        PARAMETRY NA TERAZ: HP,ATTACK,MAGIC,CRIT,ORKS,OLOGS,FLOWERS,ILOSC ITERACJI
         1.Zróbmy z 10 miejsce w których jest babcia madagaskar bo 1 na 900 to trochę mało
         2. Kiedy program ma się skończyć
          */
@@ -23,7 +23,7 @@ public class Main {
 
         System.out.println("parametry: " + args[0] + args[1] + args[2] + args[3] + args[4] + args[5] + args[6]);
 
-        new Map(30,30,flowers,ologs,orks,PEPE,babcia_sida);
+        new Map(30,30,flowers,ologs,orks,PEPE,babcia_sida, Integer.parseInt(args[7]));
         //mapa
         //bohater
         //rozmieszczenie orkow i ologow

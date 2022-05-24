@@ -17,18 +17,31 @@ public class Pool {
     ArrayList<Ork> Orks;
     ArrayList<Olog> Ologs;
     ArrayList<Bohater> bohater;
-    int rand;
     int id;
+    int rand;
     Random random = new Random();
     public boolean is_empty;
     Pool()
     {
         is_empty=true;
-        rand= random.nextInt();
         Orks = new ArrayList<>();
         Ologs = new ArrayList<>();
         bohater = new ArrayList<>();
     }
+
+    public boolean getbohater(){
+        return bohater.isEmpty();
+    }
+
+    public boolean getork(){
+        return Orks.isEmpty();
+    }
+
+    public boolean getolog(){
+        return Ologs.isEmpty();
+    }
+
+
 
 
 
@@ -56,6 +69,11 @@ public class Pool {
     {
         is_empty=false;
     }
+
+   /* public void ktoTo(){
+
+    }*/
+
     public int get_rand()
     {
         rand = random.nextInt(8);

@@ -27,5 +27,5 @@ public class Bohater extends Postac implements Refuse_to_eat{
         has_ring = false;
         has_babcia = false;
     }
-
 }
+

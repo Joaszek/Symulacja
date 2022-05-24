@@ -17,7 +17,7 @@ public class Map {
     ArrayList<Babcia_MAD>babcie = new ArrayList<>();
     ArrayList<Flower>kwiatki = new ArrayList<>();
 
-    Map(int x, int y, int flowers, int ologs, int orks, Bohater PEPE, Babcia_Sida babcia_sida)
+    Map(int x, int y, int flowers, int ologs, int orks, Bohater PEPE, Babcia_Sida babcia_sida, int ilosc_iteracji)
     {
         this.size_x=x;
         this.size_y=y;
@@ -27,7 +27,18 @@ public class Map {
         this.PEPE=PEPE;
         this.babcia_sida=babcia_sida;
         set_Map();
+        for(int i = 0; i<ilosc_iteracji && PEPE.hp>0; i++){ //tu beda rzeczy sie dzialy, mamy chodzenie ale graficznie tego jeszcze nie ma
+            PEPE.walk();
+            //System.out.println("kordy bohatera to: " + PEPE.Lx + " " + PEPE.Ly);
+            for(int j = 0; j<Orkowie.size(); j++){
+                Orkowie.get(j).walk();
 
+            }
+            for(int j = 0; j<Ologi.size(); j++){
+                Ologi.get(j).walk();
+            }
+            //tu bedzie walka
+        }
     }
     public void set_Map()
     {
@@ -135,8 +146,7 @@ public class Map {
         }*/
 
 
-
-        new Frame(map);
+        Frame myframe = new Frame(map);
     }
     public void set_Panels()
     {
