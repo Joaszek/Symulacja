@@ -12,16 +12,19 @@ public class Main {
 
 
         Babcia_Sida babcia_sida= new Babcia_Sida();
-        Bohater PEPE = new Bohater(Double.parseDouble(args[1]), Double.parseDouble(args[2]), Integer.parseInt(args[3]), Double.parseDouble(args[4]));
+        //Bohater PEPE = new Bohater(Double.parseDouble(args[1]), Double.parseDouble(args[2]), Integer.parseInt(args[3]), Double.parseDouble(args[4]));
+        Bohater PEPE = new Bohater(30,30,30,30);
         int flowers,orks,ologs;
         Scanner scanner = new Scanner(System.in);
+        /*
         orks = Integer.parseInt(args[5]);
         ologs = Integer.parseInt(args[6]);
         flowers= Integer.parseInt(args[7]);
-        new Map(30,30,flowers,ologs,orks,PEPE,babcia_sida);
+        */
+        new Map(30,30,30,30,30,PEPE,babcia_sida);
         //mapa
         //bohater
         //rozmieszczenie orkow i ologow
-        //czemu amazon robi jdk
+
     }
 }

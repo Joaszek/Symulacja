@@ -1,5 +1,6 @@
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.Flow;
 
 //trzeba dodać gettery aby zwracały co jest w klasie Pool
@@ -10,20 +11,25 @@ import java.util.concurrent.Flow;
 public class Pool {
     Flower flowers;
     Item items;
-    Ork orks;
-    Olog ologs;
     Pierscien pierscien;
     Babcia_MAD babcia_mads;
     Babcia_Sida babcia_sidas;
+    ArrayList<Ork> Orks;
+    ArrayList<Olog> Ologs;
+    ArrayList<Bohater> bohater;
+    int rand;
+    Random random = new Random();
     public boolean is_empty;
     Pool()
     {
         is_empty=true;
+        rand= random.nextInt();
+        Orks = new ArrayList<>();
+        Ologs = new ArrayList<>();
+        bohater = new ArrayList<>();
     }
 
-    ArrayList<Ork> Orks = new ArrayList<>();
-    //ologow tez
-    ArrayList<Bohater> bohater = new ArrayList<>();
+
 
     public void set_Orks()
     {
@@ -48,5 +54,10 @@ public class Pool {
     public void set_Bohater()
     {
         is_empty=false;
+    }
+    public int get_rand()
+    {
+        rand = random.nextInt(8);
+        return rand;
     }
 }

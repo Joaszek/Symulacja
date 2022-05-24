@@ -24,13 +24,15 @@ public class Map {
         this.PEPE=PEPE;
         this.babcia_sida=babcia_sida;
         set_Map();
+
     }
     public void set_Map()
     {
-        map = new Pool[size_x][size_y];
-        Random random = new Random(900);
-        int rand_1 = random.nextInt();
-        int rand_2 = random.nextInt();
+        //setting pools
+        setMap();
+        Random random = new Random();
+        int rand_1 = random.nextInt(30);
+        int rand_2 = random.nextInt(30);
         //add bohater
         if(map[rand_1][rand_2].is_empty)
         {
@@ -61,5 +63,15 @@ public class Map {
     {
         panels = new JPanel[size_x][size_y];
     }
-
+    private void setMap()
+    {
+        map = new Pool[30][30];
+        for(int i=0;i<30;i++)
+        {
+            for(int j=0;j<30;j++)
+            {
+                map[i][j]=new Pool();
+            }
+        }
+    }
 }
