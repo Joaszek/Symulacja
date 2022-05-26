@@ -3,19 +3,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Map {
-    private int size_x;
-    private int size_y;
-    private int flowers;
-    private int orks;
-    private int ologs;
+    private final int size_x;
+    private final int size_y;
+    private final int flowers;
+    private final int orks;
+    private final int ologs;
     JPanel [][] panels;
     Pool[][] map;
-    private Bohater PEPE;
-    private Babcia_Sida babcia_sida;
+    private final Bohater PEPE;
+    private final Babcia_Sida babcia_sida;
     ArrayList<Ork>Orkowie = new ArrayList<>();
     ArrayList<Olog>Ologi = new ArrayList<>();
     ArrayList<Babcia_MAD>babcie = new ArrayList<>();
     ArrayList<Flower>kwiatki = new ArrayList<>();
+    Item[] items = new Item[30];
 
     Map(int x, int y, int flowers, int ologs, int orks, Bohater PEPE, Babcia_Sida babcia_sida, int ilosc_iteracji)
     {
@@ -26,6 +27,7 @@ public class Map {
         this.orks=orks;
         this.PEPE=PEPE;
         this.babcia_sida=babcia_sida;
+
         set_Map();
         for(int i = 0; i<ilosc_iteracji && PEPE.hp>0; i++){ //tu beda rzeczy sie dzialy, mamy chodzenie ale graficznie tego jeszcze nie ma
             PEPE.walk();
@@ -50,10 +52,12 @@ public class Map {
         //add bohater
         if(map[rand_1][rand_2].is_empty)
         {
+            //bohater works
             PEPE.x=rand_1;
             PEPE.y=rand_2;
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id = 1;
+
         }
         //add babcia sida
         rand_1 = random.nextInt(30);
@@ -66,84 +70,82 @@ public class Map {
             map[rand_1][rand_2].id = 2;
         }
         //add orks
-        for(int i = 0; i<orks; i++){
-            int k = 0;
-            while(k==0) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
+        for(int i = 0; i<orks; i++) {
+            while (map[rand_1][rand_2].is_empty == false) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
                 rand_1 = random.nextInt(30);
                 rand_2 = random.nextInt(30);
-                if(map[rand_1][rand_2].is_empty){
-                    Orkowie.add(new Ork());
-                    map[rand_1][rand_2].is_empty = false;
-                    map[rand_1][rand_2].id = 4;
-                    k=1;    //zamyka
-                }
             }
+            Orkowie.add(new Ork());
+            map[rand_1][rand_2].is_empty = false;
+            map[rand_1][rand_2].id = 4;
         }
 
         //add ologs
         for(int i = 0; i<ologs; i++){
-            int k = 0;
-            while(k==0) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
+            while(map[rand_1][rand_2].is_empty==false)
+            {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
                 rand_1 = random.nextInt(30);
                 rand_2 = random.nextInt(30);
-                if(map[rand_1][rand_2].is_empty){
-                    Ologi.add(new Olog());
-                    map[rand_1][rand_2].is_empty = false;
-                    map[rand_1][rand_2].id=5;
-                    k=1;    //zamyka
-                }
             }
+            Ologi.add(new Olog());
+            map[rand_1][rand_2].is_empty = false;
+            map[rand_1][rand_2].id=5;
         }
         //add babcia MAD
         for(int i = 0; i<10; i++){
-            int k = 0;
-            while(k==0) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
+            while(map[rand_1][rand_2].is_empty==false)
+            {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
                 rand_1 = random.nextInt(30);
                 rand_2 = random.nextInt(30);
-                if(map[rand_1][rand_2].is_empty){
-                    babcie.add(new Babcia_MAD());
-                    map[rand_1][rand_2].is_empty = false;
-                    map[rand_1][rand_2].id = 3;
-                    k=1;    //zamyka
-                }
             }
+            babcie.add(new Babcia_MAD());
+            map[rand_1][rand_2].is_empty = false;
+            map[rand_1][rand_2].id = 3;
         }
 
         //add flowers
         for(int i = 0; i<flowers; i++){
-            int k = 0;
-            while(k==0) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
+            while(map[rand_1][rand_2].is_empty==false)    //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
+            {
                 rand_1 = random.nextInt(30);
                 rand_2 = random.nextInt(30);
-                if(map[rand_1][rand_2].is_empty){
-                    kwiatki.add(new Flower());
-                    map[rand_1][rand_2].is_empty = false;
-                    map[rand_1][rand_2].id=6;
-                    k=1;    //zamyka
-                }
             }
+            kwiatki.add(new Flower());
+            map[rand_1][rand_2].is_empty = false;
+            map[rand_1][rand_2].id=6;
+
         }
         //add pierscien
-
+        rand_1 = random.nextInt(30);
+        rand_2 = random.nextInt(30);
         if(map[rand_1][rand_2].is_empty){
+            System.out.println("cos");
+            //dodac szczegoly pierscienia
             new Pierscien();
             map[rand_1][rand_2].id = 8;
         }
+        rand_1 = random.nextInt(30);
+        rand_2 = random.nextInt(30);
+        if(map[rand_1][rand_2].is_empty)
+        {
+            new Pierscien();
+            map[rand_1][rand_2].id=8;
+        }
         //add item
 
-       /* for(int i = 0; i<item; i++){      //to do itema potem
-            int k = 0;
-            while(k==0) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
+       for(int i = 0; i<30; i++){      //to do itema potem
+
+            while(map[rand_1][rand_2].is_empty==false) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
                 rand_1 = random.nextInt(30);
                 rand_2 = random.nextInt(30);
-                if(map[rand_1][rand_2].is_empty){
-                    kwiatki.add(new Flower());
-                    map[rand_1][rand_2].is_empty = false;
-                    map[rand_1][rand_2].id=6;
-                    k=1;    //zamyka
-                }
             }
-        }*/
+                if(map[rand_1][rand_2].is_empty){
+                    items[i]=new Item();
+                    map[rand_1][rand_2].is_empty = false;
+                    map[rand_1][rand_2].id=7;
+                }
+
+        }
 
 
         Frame myframe = new Frame(map);
