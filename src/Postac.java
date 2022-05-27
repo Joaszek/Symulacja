@@ -14,7 +14,7 @@ public abstract class Postac{
     public double armor;
     public double magic_resist;
     public void IsPool (int x, int y){};
-    public int range;                               //idk
+    public double MAX_HP;
     int Lx, Ly;                          //koordynaty gracza na tablicy (lewy gorny to 0,0)
     public void walk() {                 //chodzenie
         int a = Lx;
@@ -51,7 +51,7 @@ public abstract class Postac{
                     Lx -= 1;
                     break;
             };
-            if(Lx < 29 && Ly < 29 && Lx >= 0 && Ly >= 0) break;    //konczy petle jesli nie wychodza poza skale
+            if(Lx <= 29 && Ly <= 29 && Lx >= 0 && Ly >= 0) break;    //konczy petle jesli nie wychodza poza skale
             else{Lx = a; Ly = b;};                                   //przywraca lokalizacje do poczatkowej i losuje jeszcze raz
         }
     }

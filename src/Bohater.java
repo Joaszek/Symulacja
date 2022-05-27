@@ -1,7 +1,7 @@
 public class Bohater extends Postac implements Refuse_to_eat{
     //rusza sie jak krol w szachach
     //atakuja tylko jak sa na tym samym polu
-
+    //nie zrobiony
     public int x;
     public int y;
     public void Eat(){};
@@ -19,7 +19,8 @@ public class Bohater extends Postac implements Refuse_to_eat{
     }   //co?
 
 
-    public Bohater(double hp, double attack, int magic, double crit_chance){       //parametry beda brane z commandline
+    public Bohater(double hp, double attack, int magic, double crit_chance){
+        this.MAX_HP=hp;//parametry beda brane z commandline
         this.hp = hp;
         this.attack = attack;
         this.magic = magic;

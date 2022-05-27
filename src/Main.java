@@ -11,7 +11,7 @@ public class Main {
          */
 
 
-        Babcia_Sida babcia_sida= new Babcia_Sida();
+        Babcia_Sida babcia_sida= new Babcia_Sida(8);
         Bohater PEPE = new Bohater(Double.parseDouble(args[0]), Double.parseDouble(args[1]), Integer.parseInt(args[2]), Double.parseDouble(args[3]));
 
         int flowers,orks,ologs;
