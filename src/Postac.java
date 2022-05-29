@@ -3,56 +3,31 @@ import java.util.Random;
 
 public abstract class Postac{
     //atakuja tylko jak sa na tym samym polu
+    protected Random rand = new Random();
+    protected int lx, ly;                          //koordynaty postaci na mapie (lewy gorny to 0,0);
+    protected double hp;
+    protected double attack=1; //tymczasowo
+    protected double crit_chance;
+    protected double armor;
+    protected double magic_resist;
+    protected double MAX_HP;
 
-    Random rand = new Random();
-    public String name;
-    public double hp;
-    public double attack=1; //tymczasowo
-    public double crit_chance;
     public ArrayList<Item> items;
-    public void Eat_Pierogi(){};
-    public double armor;
-    public double magic_resist;
-    public void IsPool (int x, int y){};
-    public double MAX_HP;
-    int Lx, Ly;                          //koordynaty gracza na tablicy (lewy gorny to 0,0)
+
+    private void IsPool (int x, int y){};
+    public abstract void Eat_Pierogi();
+
     public void walk() {                 //chodzenie
-        int a = Lx;
-        int b = Ly;
+        int a = lx;
+        int b = ly;
         while(true){
-            int krok = rand.nextInt(8) + 1;   //liczba 1 odpowiada za lewe gorne pole i rosna zgodnie z kierunkiem wskazowek zegara a w mainie bedzie to zamieniane na ruch
-            switch (krok) {                           //chyba jest debiloodporne
-                case 1:
-                    Lx -= 1;
-                    Ly -= 1;
-                    break;
-                case 2:
-                    Ly -= 1;
-                    break;
-                case 3:
-                    Lx += 1;
-                    Ly -= 1;
-                    break;
-                case 4:
-                    Lx += 1;
-                    break;
-                case 5:
-                    Lx += 1;
-                    Ly += 1;
-                    break;
-                case 6:
-                    Ly += 1;
-                    break;
-                case 7:
-                    Lx -= 1;
-                    Ly += 1;
-                    break;
-                case 8:
-                    Lx -= 1;
-                    break;
-            };
-            if(Lx <= 29 && Ly <= 29 && Lx >= 0 && Ly >= 0) break;    //konczy petle jesli nie wychodza poza skale
-            else{Lx = a; Ly = b;};                                   //przywraca lokalizacje do poczatkowej i losuje jeszcze raz
+            int step = rand.nextInt(8) ;   //liczba 0 odpowiada za lewe gorne pole i rosna zgodnie z kierunkiem wskazowek zegara a w mainie bedzie to zamieniane na ruch
+            int [] move = {-1,-1,0,-1,1,-1,1,0,1,1,0,1,-1,1,-1,0};
+            lx += move[2*step];
+            ly += move[2*step+1];
+            if(lx <= 29 && ly <= 29 && lx >= 0 && ly >= 0) break;    //konczy petle jesli nie wychodza poza skale
+            else{
+                lx = a; ly = b;};                                   //przywraca lokalizacje do poczatkowej i losuje jeszcze raz
         }
     }
     public void fight(){};

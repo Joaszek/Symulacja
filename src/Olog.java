@@ -2,13 +2,15 @@ public class Olog extends Postac{
     //atakuja tylko jak sa na tym samym polu
 
 
-    public int mass;
+    private int mass;
+
+    public void Eat_Pierogi(){};
     public void Scale_mass_to_dmg(){
         attack *= (double)mass/700;
     };
 
 
-    Olog(){
+    public Olog(){
         this.MAX_HP=mass;
         this.mass=rand.nextInt(500)* mass;
         mass = rand.nextInt(901)+100;

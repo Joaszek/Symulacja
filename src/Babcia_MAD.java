@@ -4,6 +4,6 @@ public class Babcia_MAD {
     };   //leczy do max HP, jesli zje
     public void Instakill(boolean dies, Postac someone){
         if(dies)someone.hp=0;
-    };  //jak odmowi to postac umiera
+    };  //jak odmowi to postac umiera //bruh
 
 }
