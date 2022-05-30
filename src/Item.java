@@ -9,6 +9,7 @@ public class Item {
     private Random rand;
     Item()
     {
+        this.rand=new Random();
         this.damage = rand.nextInt(40)+40;
         this.magic = rand.nextInt(80)+40;
         this.magic_resist= rand.nextInt(50)+10;

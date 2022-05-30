@@ -1,5 +1,9 @@
 public class Pierscien {
-    //nie zrobiony
+
     String power;
     public void Power(){};  //do wymyslenia
+    Pierscien(String name)
+    {
+        this.power=name;
+    }
 }

@@ -14,7 +14,7 @@ import java.awt.*;
 
 
 public class Frame extends JFrame {
-    JPanel[][] panels;
+    public JPanel[][] panels;
     Pool [][]map;
     Frame(Pool[][] map)
     {

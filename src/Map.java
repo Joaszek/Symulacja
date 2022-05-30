@@ -122,14 +122,14 @@ public class Map {
         if(map[rand_1][rand_2].is_empty){
             System.out.println("cos");
             //dodac szczegoly pierscienia
-            new Pierscien();
+            new Pierscien("cos1");
             map[rand_1][rand_2].id = 8;
         }
         rand_1 = random.nextInt(30);
         rand_2 = random.nextInt(30);
         if(map[rand_1][rand_2].is_empty)
         {
-            new Pierscien();
+            new Pierscien("Cos2");
             map[rand_1][rand_2].id=8;
         }
         //add item
@@ -148,9 +148,24 @@ public class Map {
 
         }
 
-
-        Frame myframe = new Frame(map);
+       Frame myframe = new Frame(map);
        new SecondFrame(PEPE,myframe);
+
+       //tutaj patrz
+        while(PEPE.hp>0)
+        {
+            for(Olog olog:Ologi)
+            {
+                //olog.mowe();
+            }
+            for(Ork ork:Orkowie)
+            {
+                //ork.mowe();
+            }
+            //tu będzie ustawianie kolorów
+            //myframe.panels
+        }
+
     }
     public void   set_Panels()
     {
