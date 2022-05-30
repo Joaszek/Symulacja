@@ -1,22 +1,23 @@
-public class Bohater extends Postac implements Refuse_to_eat{
+public class Bohater extends Postac {
     //rusza sie jak krol w szachach
     //atakuja tylko jak sa na tym samym polu
     //nie zrobiony
     public int x;
     public int y;
-    public void Eat(){};
-    public int bonus_dmg_from_babcia;
-    public int kills;
-    public int look;
-    public int magic;
-    public boolean has_ring;
-    public boolean has_babcia;
-    public void magic_dmg(){};
+    private int bonus_dmg_from_babcia;
+    private int kills;
+    private int look;
+    private int magic;
+    private boolean has_ring;
+    private boolean has_babcia;
+    private void Eat(){};
+    private void magic_dmg(){};
+    public void Eat_Pierogi(){};
 
-    @Override
+
     public boolean Eat_or_die() {
         return false;
-    }   //co?
+    }   //co? generalnie ten interfejs byl bez sensu
 
 
     public Bohater(double hp, double attack, int magic, double crit_chance){

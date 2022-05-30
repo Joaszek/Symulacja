@@ -9,6 +9,9 @@ import java.util.concurrent.Flow;
 
 
 public class Pool {
+    int id;
+    int rand;
+    public boolean is_empty;
     Flower flowers;
     Item items;
     Pierscien pierscien;
@@ -17,10 +20,7 @@ public class Pool {
     ArrayList<Ork> Orks;
     ArrayList<Olog> Ologs;
     ArrayList<Bohater> bohater;
-    int id;
-    int rand;
     Random random = new Random();
-    public boolean is_empty;
     Pool()
     {
         is_empty=true;
@@ -74,7 +74,7 @@ public class Pool {
 
     }*/
 
-    public int get_rand()
+    public int get_rand()       //co to robi?
     {
         rand = random.nextInt(8);
         return rand;

@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Map {
-    private final int size_x;
-    private final int size_y;
+    private final int sizeX;
+    private final int sizeY;
     private final int flowers;
     private final int orks;
     private final int ologs;
@@ -12,16 +12,16 @@ public class Map {
     Pool[][] map;
     private final Bohater PEPE;
     private final Babcia_Sida babcia_sida;
-    ArrayList<Ork>Orkowie = new ArrayList<>();
-    ArrayList<Olog>Ologi = new ArrayList<>();
-    ArrayList<Babcia_MAD>babcie = new ArrayList<>();
-    ArrayList<Flower>kwiatki = new ArrayList<>();
-    Item[] items = new Item[30];
+    private ArrayList<Ork> orkowie = new ArrayList<>();
+    private ArrayList<Olog> ologi = new ArrayList<>();
+    private ArrayList<Babcia_MAD> babcie = new ArrayList<>();
+    private ArrayList<Flower> kwiatki = new ArrayList<>();
+    private Item[] itemy = new Item[30];
 
-    Map(int x, int y, int flowers, int ologs, int orks, Bohater PEPE, Babcia_Sida babcia_sida, int ilosc_iteracji)
+    Map(int flowers, int ologs, int orks, Bohater PEPE, Babcia_Sida babcia_sida, int ilosc_iteracji)
     {
-        this.size_x=x;
-        this.size_y=y;
+        this.sizeX = 30;
+        this.sizeY = 30;
         this.flowers=flowers;
         this.ologs=ologs;
         this.orks=orks;
@@ -32,10 +32,10 @@ public class Map {
         for(int i = 0; i<ilosc_iteracji && PEPE.hp>0; i++){ //tu beda rzeczy sie dzialy, mamy chodzenie ale graficznie tego jeszcze nie ma
             PEPE.walk();
             //System.out.println("kordy bohatera to: " + PEPE.Lx + " " + PEPE.Ly);
-            for (Ork ork : Orkowie) {
+            for (Ork ork : orkowie) {
                 ork.walk();
             }
-            for (Olog olog : Ologi) {
+            for (Olog olog : ologi) {
                 olog.walk();
             }
             //tu bedzie walka
@@ -74,7 +74,7 @@ public class Map {
                 rand_1 = random.nextInt(30);
                 rand_2 = random.nextInt(30);
             }
-            Orkowie.add(new Ork(rand_1,rand_2));
+            orkowie.add(new Ork(rand_1,rand_2));
             //zrob imie
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id = 4;
@@ -87,7 +87,7 @@ public class Map {
                 rand_1 = random.nextInt(30);
                 rand_2 = random.nextInt(30);
             }
-            Ologi.add(new Olog());
+            ologi.add(new Olog());
             //zrob imie
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id=5;
@@ -141,7 +141,7 @@ public class Map {
                 rand_2 = random.nextInt(30);
             }
                 if(map[rand_1][rand_2].is_empty){
-                    items[i]=new Item();
+                    itemy[i]=new Item();
                     map[rand_1][rand_2].is_empty = false;
                     map[rand_1][rand_2].id=7;
                 }
@@ -169,7 +169,7 @@ public class Map {
     }
     public void   set_Panels()
     {
-        panels = new JPanel[size_x][size_y];
+        panels = new JPanel[sizeX][sizeY];
     }
     private void setMap()
     {

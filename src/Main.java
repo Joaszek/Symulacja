@@ -10,7 +10,6 @@ public class Main {
         2. Kiedy program ma się skończyć
          */
 
-
         Babcia_Sida babcia_sida= new Babcia_Sida(8);
         Bohater PEPE = new Bohater(Double.parseDouble(args[0]), Double.parseDouble(args[1]), Integer.parseInt(args[2]), Double.parseDouble(args[3]));
 
@@ -20,8 +19,8 @@ public class Main {
         ologs = Integer.parseInt(args[5]);
         flowers= Integer.parseInt(args[6]);
 
-        System.out.println("parametry: " + args[0] + args[1] + args[2] + args[3] + args[4] + args[5] + args[6]);
+        //System.out.println("parametry: " + args[0] + args[1] + args[2] + args[3] + args[4] + args[5] + args[6]);
 
-        new Map(30,30,flowers,ologs,orks,PEPE,babcia_sida, Integer.parseInt(args[7]));
+        new Map(flowers,ologs,orks,PEPE,babcia_sida, Integer.parseInt(args[7]));
     }
 }

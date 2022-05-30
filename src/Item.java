@@ -6,8 +6,8 @@ public class Item {
     private int magic;
     private int magic_resist;
     private int armor;
-    private Random rand;
-    Item()
+    public Random rand = new Random();
+    public Item()
     {
         this.rand=new Random();
         this.damage = rand.nextInt(40)+40;
