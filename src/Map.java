@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,7 +18,7 @@ public class Map {
     private ArrayList<Babcia_MAD> babcie = new ArrayList<>();
     private ArrayList<Flower> kwiatki = new ArrayList<>();
     private Item[] itemy = new Item[30];
-
+    Frame myframe;
     Map(int flowers, int ologs, int orks, Bohater PEPE, Babcia_Sida babcia_sida, int ilosc_iteracji)
     {
         this.sizeX = 30;
@@ -28,26 +29,17 @@ public class Map {
         this.PEPE=PEPE;
         this.babcia_sida=babcia_sida;
 
+
         set_Map();
-        for(int i = 0; i<ilosc_iteracji && PEPE.hp>0; i++){ //tu beda rzeczy sie dzialy, mamy chodzenie ale graficznie tego jeszcze nie ma
-            PEPE.walk();
-            //System.out.println("kordy bohatera to: " + PEPE.Lx + " " + PEPE.Ly);
-            for (Ork ork : orkowie) {
-                ork.walk();
-            }
-            for (Olog olog : ologi) {
-                olog.walk();
-            }
-            //tu bedzie walka
-        }
+
     }
     public void set_Map()
     {
         //setting pools
         setMap();
         Random random = new Random();
-        int rand_1 = random.nextInt(30);
-        int rand_2 = random.nextInt(30);
+        int rand_1 = random.nextInt(28)+1;
+        int rand_2 = random.nextInt(28)+1;
         //add bohater
         if(map[rand_1][rand_2].is_empty)
         {
@@ -59,8 +51,8 @@ public class Map {
 
         }
         //add babcia sida
-        rand_1 = random.nextInt(30);
-        rand_2 = random.nextInt(30);
+        rand_1 = random.nextInt(28)+1;
+        rand_2 = random.nextInt(28)+1;
         if(map[rand_1][rand_2].is_empty)
         {
             babcia_sida.x=rand_1;
@@ -71,8 +63,8 @@ public class Map {
         //add orks
         for(int i = 0; i<orks; i++) {
             while (!map[rand_1][rand_2].is_empty) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
-                rand_1 = random.nextInt(30);
-                rand_2 = random.nextInt(30);
+                rand_1 = random.nextInt(28)+1;
+                rand_2 = random.nextInt(28)+1;
             }
             orkowie.add(new Ork(rand_1,rand_2));
             //zrob imie
@@ -84,10 +76,10 @@ public class Map {
         for(int i = 0; i<ologs; i++){
             while(!map[rand_1][rand_2].is_empty)
             {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
-                rand_1 = random.nextInt(30);
-                rand_2 = random.nextInt(30);
+                rand_1 = random.nextInt(28)+1;
+                rand_2 = random.nextInt(28)+1;
             }
-            ologi.add(new Olog());
+            ologi.add(new Olog(rand_1,rand_2));
             //zrob imie
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id=5;
@@ -96,8 +88,8 @@ public class Map {
         for(int i = 0; i<10; i++){
             while(!map[rand_1][rand_2].is_empty)
             {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
-                rand_1 = random.nextInt(30);
-                rand_2 = random.nextInt(30);
+                rand_1 = random.nextInt(28)+1;
+                rand_2 = random.nextInt(28)+1;
             }
             babcie.add(new Babcia_MAD());
             map[rand_1][rand_2].is_empty = false;
@@ -108,8 +100,8 @@ public class Map {
         for(int i = 0; i<flowers; i++){
             while(!map[rand_1][rand_2].is_empty)    //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
             {
-                rand_1 = random.nextInt(30);
-                rand_2 = random.nextInt(30);
+                rand_1 = random.nextInt(28)+1;
+                rand_2 = random.nextInt(28)+1;
             }
             kwiatki.add(new Flower());
             map[rand_1][rand_2].is_empty = false;
@@ -117,16 +109,15 @@ public class Map {
 
         }
         //add pierscien
-        rand_1 = random.nextInt(30);
-        rand_2 = random.nextInt(30);
+        rand_1 = random.nextInt(28)+1;
+        rand_2 = random.nextInt(28)+1;
         if(map[rand_1][rand_2].is_empty){
-            System.out.println("cos");
             //dodac szczegoly pierscienia
             new Pierscien("cos1");
             map[rand_1][rand_2].id = 8;
         }
-        rand_1 = random.nextInt(30);
-        rand_2 = random.nextInt(30);
+        rand_1 = random.nextInt(28)+1;
+        rand_2 = random.nextInt(28)+1;
         if(map[rand_1][rand_2].is_empty)
         {
             new Pierscien("Cos2");
@@ -137,8 +128,8 @@ public class Map {
        for(int i = 0; i<30; i++){      //to do itema potem
 
             while(!map[rand_1][rand_2].is_empty) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
-                rand_1 = random.nextInt(30);
-                rand_2 = random.nextInt(30);
+                rand_1 = random.nextInt(28)+1;
+                rand_2 = random.nextInt(28)+1;
             }
                 if(map[rand_1][rand_2].is_empty){
                     itemy[i]=new Item();
@@ -148,22 +139,40 @@ public class Map {
 
         }
 
-       Frame myframe = new Frame(map);
+       myframe = new Frame(map);
        new SecondFrame(PEPE,myframe);
 
-       //tutaj patrz
         while(PEPE.hp>0)
         {
-            for(Olog olog:Ologi)
+            for(Olog olog:ologi)
             {
-                //olog.mowe();
+                map[olog.getLx()][olog.getLx()].Ologs.remove(olog);
+                map[olog.getLx()][olog.getLy()].id=0;
+                olog.walk(map,map[olog.getLx()][olog.getLy()]);
+                System.out.println("11111111111111111111");
+                map[olog.getLx()][olog.getLy()].Ologs.add(olog);
+                map[olog.getLx()][olog.getLy()].id=5;
             }
-            for(Ork ork:Orkowie)
+            for(Ork ork:orkowie)
             {
-                //ork.mowe();
+                map[ork.getLx()][ork.getLx()].Orks.remove(ork);
+                map[ork.getLx()][ork.getLx()].id=0;
+                System.out.println("2222222222222222222222222");
+                ork.walk(map,map[ork.getLx()][ork.getLy()]);
+                map[ork.getLx()][ork.getLy()].Orks.add(ork);
+                map[ork.getLx()][ork.getLx()].id=4;
             }
+            map[PEPE.getLx()][PEPE.getLy()].bohater.clear();
+            map[PEPE.getLx()][PEPE.getLy()].id=0;
+            System.out.println("3333333333333333333333");
+            PEPE.walk(map,map[PEPE.getLx()][PEPE.getLy()]);
+            map[PEPE.getLx()][PEPE.getLy()].bohater.add(PEPE);
+            map[PEPE.getLx()][PEPE.getLy()].id=1;
+            //fight
             //tu będzie ustawianie kolorów
-            //myframe.panels
+
+            set_Colors();
+            System.out.println("HP"+PEPE.hp);
         }
 
     }
@@ -179,6 +188,68 @@ public class Map {
             for(int j=0;j<30;j++)
             {
                 map[i][j]=new Pool();
+            }
+        }
+    }
+    private void set_Colors()
+    {
+        for(int i=0;i<30;i++)
+        {
+            for(int j=0;j<30;j++)
+            {
+                if(map[i][j].id==1)
+                {
+                    //bohater
+                    myframe.panels[i][j].setForeground(Color.BLACK);
+                    myframe.panels[i][j].setBackground(Color.BLACK);
+                }
+                else if(map[i][j].id==2)
+                {
+                    //babcia Sida
+                    myframe.panels[i][j].setForeground(Color.BLUE);
+                    myframe.panels[i][j].setBackground(Color.BLUE);
+                }
+                else if(map[i][j].id==3)
+                {
+                    //babcia Mad
+                    myframe.panels[i][j].setForeground(Color.PINK);
+                    myframe.panels[i][j].setBackground(Color.PINK);
+                }
+                else if(map[i][j].id==4)
+                {
+                    //ork
+                    myframe.panels[i][j].setForeground(Color.RED);
+                    myframe.panels[i][j].setBackground(Color.RED);
+                }
+                else if(map[i][j].id==5)
+                {
+                    //ologs
+                    myframe.panels[i][j].setForeground(Color.MAGENTA);
+                    myframe.panels[i][j].setBackground(Color.MAGENTA);
+                }
+                else if(map[i][j].id==6)
+                {
+                    //flower
+                    myframe.panels[i][j].setForeground(Color.GREEN);
+                    myframe.panels[i][j].setBackground(Color.GREEN);
+                }
+                else if(map[i][j].id==7)
+                {
+                    //item
+                    myframe.panels[i][j].setForeground(new Color(160,82,40));
+                    myframe.panels[i][j].setBackground(new Color(109, 52, 9));
+                }
+                else if(map[i][j].id==8)
+                {
+                    //rings
+                    myframe.panels[i][j].setForeground(Color.YELLOW);
+                    myframe.panels[i][j].setBackground(Color.YELLOW);
+                }
+                else if(map[i][j].id==0)
+                {
+                    myframe.panels[i][j].setForeground(Color.WHITE);
+                    myframe.panels[i][j].setBackground(Color.WHITE);
+                }
             }
         }
     }

@@ -10,10 +10,13 @@ public class Olog extends Postac{
     };
 
 
-    public Olog(){
+    public Olog(int x, int y){
         this.MAX_HP=mass;
         this.mass=rand.nextInt(500)* mass;
+        this.lx=x;
+        this.ly=y;
         mass = rand.nextInt(901)+100;
         Scale_mass_to_dmg();
     }
+
 }

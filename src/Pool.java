@@ -28,7 +28,7 @@ public class Pool {
         Ologs = new ArrayList<>();
         bohater = new ArrayList<>();
     }
-
+//z czterech metod zrobić jedną
     public boolean getbohater(){
         return bohater.isEmpty();
     }
@@ -41,8 +41,14 @@ public class Pool {
         return Ologs.isEmpty();
     }
 
-
-
+    public boolean check()
+    {
+        if(getolog()&&getork()&&getbohater())return true;
+        else
+        {
+            return false;
+        }
+    }
 
 
     public void set_Orks()

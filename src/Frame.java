@@ -43,7 +43,14 @@ public class Frame extends JFrame {
 
             for(int j=0;j<30;j++)
             {
+
                 panels[i][j]=new JPanel();
+                if(i==0||j==0||i==29||j==29)
+                {
+                    //wall
+                    panels[i][j].setForeground(Color.GRAY);
+                    panels[i][j].setBackground(Color.GRAY);
+                }
                 if(map[i][j].id==1)
                 {
                     //bohater
