@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.lang.*;
 
 public abstract class Postac{
     //atakuja tylko jak sa na tym samym polu
-    protected Random rand = new Random();
+    protected Random rand = new Random(100000);
     public int lx, ly;                          //koordynaty postaci na mapie (lewy gorny to 0,0);
     protected double hp;
     protected double attack=1; //tymczasowo
@@ -17,7 +18,9 @@ public abstract class Postac{
     private void IsPool (int x, int y){};
     public abstract void Eat_Pierogi();
 
-    public void walk(Pool pools[][],Pool pool) {                 //chodzenie
+    public void walk(Pool pools[][],Pool pool){
+        //chodzenie
+
         int a = lx;
         int b = ly;
         int verse=check_bounds(pools);
@@ -30,18 +33,28 @@ public abstract class Postac{
             int [] move = {-1,-1,0,-1,1,-1,1,0,1,1,0,1,-1,1,-1,0};
             lx += move[2*step];
             ly += move[2*step+1];
-            if(lx <= 28 && ly <= 28 && lx >= 1 && ly >= 1)
+
+            try{
+                Thread.sleep(500);
+            }
+            catch (InterruptedException e)
             {
 
+            }
+
+
+
+            System.out.println(a+" "+b+" "+lx+" "+ly);
+            if(lx <= 28 && ly <= 28 && lx >= 1 && ly >= 1)
+            {
                 if(pools[lx][ly].check()) {
-                    System.out.println(lx+" "+ly);
                     break;//konczy petle jesli nie wychodza poza skale
                 }
             }
-            else{
-                lx = a; ly = b;
-            }                                 //przywraca lokalizacje do poczatkowej i losuje jeszcze raz
+            lx = a; ly = b;
+                                            //przywraca lokalizacje do poczatkowej i losuje jeszcze raz
         }
+
     }
     public void fight(){};
     public int getLx()
@@ -68,8 +81,6 @@ public abstract class Postac{
         {
             verse++;
         }
-
-
         return verse;
     }
 }

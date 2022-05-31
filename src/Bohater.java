@@ -2,8 +2,7 @@ public class Bohater extends Postac {
     //rusza sie jak krol w szachach
     //atakuja tylko jak sa na tym samym polu
     //nie zrobiony
-    public int x;
-    public int y;
+
     private int bonus_dmg_from_babcia;
     private int kills;
     private int look;

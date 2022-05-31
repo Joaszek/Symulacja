@@ -44,8 +44,8 @@ public class Map {
         if(map[rand_1][rand_2].is_empty)
         {
             //bohater works
-            PEPE.x=rand_1;
-            PEPE.y=rand_2;
+            PEPE.lx=rand_1;
+            PEPE.ly=rand_2;
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id = 1;
 
@@ -148,8 +148,7 @@ public class Map {
             {
                 map[olog.getLx()][olog.getLx()].Ologs.remove(olog);
                 map[olog.getLx()][olog.getLy()].id=0;
-                olog.walk(map,map[olog.getLx()][olog.getLy()]);
-                System.out.println("11111111111111111111");
+                //olog.walk(map,map[olog.getLx()][olog.getLy()]);
                 map[olog.getLx()][olog.getLy()].Ologs.add(olog);
                 map[olog.getLx()][olog.getLy()].id=5;
             }
@@ -157,22 +156,18 @@ public class Map {
             {
                 map[ork.getLx()][ork.getLx()].Orks.remove(ork);
                 map[ork.getLx()][ork.getLx()].id=0;
-                System.out.println("2222222222222222222222222");
-                ork.walk(map,map[ork.getLx()][ork.getLy()]);
+                //ork.walk(map,map[ork.getLx()][ork.getLy()]);
                 map[ork.getLx()][ork.getLy()].Orks.add(ork);
                 map[ork.getLx()][ork.getLx()].id=4;
             }
             map[PEPE.getLx()][PEPE.getLy()].bohater.clear();
             map[PEPE.getLx()][PEPE.getLy()].id=0;
-            System.out.println("3333333333333333333333");
             PEPE.walk(map,map[PEPE.getLx()][PEPE.getLy()]);
             map[PEPE.getLx()][PEPE.getLy()].bohater.add(PEPE);
             map[PEPE.getLx()][PEPE.getLy()].id=1;
             //fight
             //tu będzie ustawianie kolorów
-
             set_Colors();
-            System.out.println("HP"+PEPE.hp);
         }
 
     }
