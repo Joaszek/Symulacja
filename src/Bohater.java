@@ -28,5 +28,26 @@ public class Bohater extends Postac {
         has_ring = false;
         has_babcia = false;
     }
+    public int getKills()
+    {
+        return kills;
+    }
+
+    public int getBonus_dmg_from_babcia() {
+        return bonus_dmg_from_babcia;
+    }
+    public void set_hp(double heal)
+    {
+        this.hp+=heal;
+    }
+    public double get_hp()
+    {
+        return this.hp;
+    }
+    public double get_attack()
+    {
+        return this.attack;
+    }
+
 }
 

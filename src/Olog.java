@@ -18,5 +18,17 @@ public class Olog extends Postac{
         mass = rand.nextInt(901)+100;
         Scale_mass_to_dmg();
     }
+    public double get_attack()
+    {
+        return this.attack;
+    }
+    public void set_hp(double damage)
+    {
+        this.MAX_HP+=damage;
+    }
+    public double get_hp()
+    {
+        return this.hp;
+    }
 
 }

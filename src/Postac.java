@@ -35,7 +35,7 @@ public abstract class Postac{
             ly += move[2*step+1];
 
             try{
-                Thread.sleep(500);
+                Thread.sleep(300);
             }
             catch (InterruptedException e)
             {
@@ -51,8 +51,8 @@ public abstract class Postac{
                     break;//konczy petle jesli nie wychodza poza skale
                 }
             }
-            lx = a; ly = b;
-                                            //przywraca lokalizacje do poczatkowej i losuje jeszcze raz
+            lx = a; ly = b; //przywraca lokalizacje do poczatkowej i losuje jeszcze raz
+
         }
 
     }

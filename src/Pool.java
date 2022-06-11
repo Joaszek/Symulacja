@@ -76,9 +76,6 @@ public class Pool {
         is_empty=false;
     }
 
-   /* public void ktoTo(){
-
-    }*/
 
     public int get_rand()       //co to robi?
     {

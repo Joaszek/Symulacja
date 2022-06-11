@@ -33,4 +33,16 @@ public class Ork extends Postac{
     {
         return attack;
     }
+
+    public double get_hp() {
+        return this.hp;
+    }
+
+    public double get_attack() {
+        return this.attack;
+    }
+
+    public void set_hp(double damage) {
+        this.hp+=damage;
+    }
 }
