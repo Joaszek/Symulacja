@@ -28,7 +28,7 @@ public abstract class Postac{
 
         while(true){
 
-            if(verse==3)break;
+            //if(verse==3)break;
             int step = rand.nextInt(8) ;   //liczba 0 odpowiada za lewe gorne pole i rosna zgodnie z kierunkiem wskazowek zegara a w mainie bedzie to zamieniane na ruch
             int [] move = {-1,-1,0,-1,1,-1,1,0,1,1,0,1,-1,1,-1,0};
             lx += move[2*step];
@@ -44,12 +44,11 @@ public abstract class Postac{
 
 
 
-            System.out.println(a+" "+b+" "+lx+" "+ly);
             if(lx <= 28 && ly <= 28 && lx >= 1 && ly >= 1)
             {
-                if(pools[lx][ly].check()) {
+               // if(pools[lx][ly].check()) {
                     break;//konczy petle jesli nie wychodza poza skale
-                }
+                //}
             }
             lx = a; ly = b; //przywraca lokalizacje do poczatkowej i losuje jeszcze raz
 

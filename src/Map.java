@@ -167,28 +167,31 @@ public class Map {
             map[PEPE.getLx()][PEPE.getLy()].bohater.add(PEPE);
 
             //flowers
-
             if(map[PEPE.getLx()][PEPE.getLy()].id==6)
             {
-                System.out.println("COS");
                 PEPE.hp+=map[PEPE.getLx()][PEPE.getLy()].flowers.heal_me();
             }
             //fight
+
             else if(map[PEPE.getLx()][PEPE.getLy()].id==5)
             {
                 //ologs
+                System.out.println("HP:"+map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp());
+                System.out.println("Damage"+-1*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
                 while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp()>0)
                 {
-                    //PEPE.set_hp(-1*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
-                    //map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).set_hp(-1*PEPE.get_attack());
+                    System.out.println("COS");
+                    PEPE.set_hp(-1*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
+                    map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).set_hp(-1*PEPE.get_attack());
                 }
+                System.out.println();
                 if(PEPE.get_hp()<=0)
                 {
                     break;
                 }
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
                 map[PEPE.getLx()][PEPE.getLy()].Ologs.clear();
-            }
+            }/*
             else if(map[PEPE.getLx()][PEPE.getLy()].id==4)
             {
                 //orks
@@ -203,7 +206,7 @@ public class Map {
                 }
                 //map[PEPE.getLx()][PEPE.getLy()].id=0;
                 //map[PEPE.getLx()][PEPE.getLy()].Orks.clear();
-            }
+            }*/
 
             //tu będzie ustawianie kolorów
             map[PEPE.getLx()][PEPE.getLy()].id=1;
