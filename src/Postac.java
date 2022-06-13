@@ -46,9 +46,7 @@ public abstract class Postac{
 
             if(lx <= 28 && ly <= 28 && lx >= 1 && ly >= 1)
             {
-               // if(pools[lx][ly].check()) {
                     break;//konczy petle jesli nie wychodza poza skale
-                //}
             }
             lx = a; ly = b; //przywraca lokalizacje do poczatkowej i losuje jeszcze raz
 

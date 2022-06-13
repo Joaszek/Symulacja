@@ -2,7 +2,12 @@ import java.util.Scanner;
 
 /*
 TODO:
-
+orkowie
+kolory do poprawy(pojawiają się po śmierci)
+babcie do ogarnięcia
+itemy
+opcjonalnie:
+poruszanie się orków i ologów
  */
 
 

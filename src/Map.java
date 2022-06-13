@@ -172,48 +172,53 @@ public class Map {
                 PEPE.hp+=map[PEPE.getLx()][PEPE.getLy()].flowers.heal_me();
             }
             //fight
-
+            //przepisać do metody fight
             else if(map[PEPE.getLx()][PEPE.getLy()].id==5)
             {
                 //ologs
                 System.out.println("HP:"+map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp());
-                System.out.println("Damage"+-1*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
+                System.out.println("Damage"+-10*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
+                System.out.println("PEPE HP"+PEPE.get_hp());
                 while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp()>0)
                 {
-                    System.out.println("COS");
-                    PEPE.set_hp(-1*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
-                    map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).set_hp(-1*PEPE.get_attack());
+                    PEPE.set_hp(-10*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
+                    map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).set_hp(-10*PEPE.get_attack());
+                    System.out.println("HP:"+map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp());
+                    System.out.println("Damage"+-10*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
+                    System.out.println("PEPE HP"+PEPE.get_hp());
                 }
-                System.out.println();
                 if(PEPE.get_hp()<=0)
                 {
                     break;
                 }
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
-                map[PEPE.getLx()][PEPE.getLy()].Ologs.clear();
-            }/*
+                //map[PEPE.getLx()][PEPE.getLy()].Ologs.clear();
+            }
             else if(map[PEPE.getLx()][PEPE.getLy()].id==4)
             {
                 //orks
-                while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_hp()>0)
+               // while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_hp()>0)
                 {
-                    //PEPE.set_hp(-1*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
-                  //  map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).set_hp(-1*PEPE.get_attack());
+                    //PEPE.set_hp(-10*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
+                    //map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).set_hp(-10*PEPE.get_attack());
                 }
+                //map[PEPE.getLx()][PEPE.getLy()].id=0;
+                //map[PEPE.getLx()][PEPE.getLy()].Orks.clear();
                 if(PEPE.get_hp()<=0)
                 {
                     break;
                 }
-                //map[PEPE.getLx()][PEPE.getLy()].id=0;
-                //map[PEPE.getLx()][PEPE.getLy()].Orks.clear();
-            }*/
+
+            }
 
             //tu będzie ustawianie kolorów
             map[PEPE.getLx()][PEPE.getLy()].id=1;
             set_Colors();
             second_frame.change_data();
+            System.out.println("PEPE HP @:"+PEPE.get_hp());
         }
-
+        System.out.println("PEPE HP @:"+PEPE.get_hp());
+        System.out.println("Koniec");
     }
     public void   set_Panels()
     {

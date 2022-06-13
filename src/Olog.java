@@ -12,10 +12,9 @@ public class Olog extends Postac{
 
     public Olog(int x, int y){
 
-        this.mass=rand.nextInt(500)* mass;
         this.lx=x;
         this.ly=y;
-        mass = rand.nextInt(901)+100;
+        this.mass= rand.nextInt(901)+100;
         this.hp=mass;
         Scale_mass_to_dmg();
     }
@@ -25,7 +24,7 @@ public class Olog extends Postac{
     }
     public void set_hp(double damage)
     {
-        this.MAX_HP+=damage;
+        this.hp+=damage;
     }
     public double get_hp()
     {
