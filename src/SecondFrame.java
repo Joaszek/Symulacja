@@ -79,4 +79,8 @@ public class SecondFrame extends JFrame {
         kills.setText(String.valueOf(PEPE.getKills()));
         hp.setText(String.valueOf(PEPE.hp));
     }
+    public void changeSetBabcia()
+    {
+        panel3.setBackground(Color.GREEN);
+    }
 }

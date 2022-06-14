@@ -45,4 +45,6 @@ public class Ork extends Postac{
     public void set_hp(double damage) {
         this.hp+=damage;
     }
+
+    public void DIE(){this.hp=0;}
 }

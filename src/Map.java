@@ -149,8 +149,6 @@ public class Map {
        SecondFrame second_frame=new SecondFrame(PEPE,myframe);
         int past_lx= PEPE.getLx();
         int past_ly=PEPE.getLy();
-        //zeby pominąć pierwszą ture
-        int temp=0;
         while(PEPE.hp>0)
         {
 
@@ -248,21 +246,29 @@ public class Map {
                 System.out.println("Magic: "+PEPE.magic);
                 System.out.println("MR: "+PEPE.magic_resist);
             }
-            else if(map[PEPE.getLx()][PEPE.getLy()].id==3){//babcia saida
+            else if(map[PEPE.getLx()][PEPE.getLy()].id==2){//babcia saida
                 //System.out.println("atak bez bonusu to: " + PEPE.get_attack());
                 PEPE.set_attack(babcia_sida.bonus_ad());
                 System.out.println("atak bonus to: " + babcia_sida.bonus_ad());
                 System.out.println("atak to: " + PEPE.get_attack());
+                map[PEPE.getLx()][PEPE.getLy()].id=0;
+                second_frame.changeSetBabcia();
+                //zrobic wyczysc kanwe
             }
             //tu będzie ustawianie kolorów
+            PEPE.set_hp(-2000);
+            if(PEPE.hp<=0)
+            {
+                babcia_sida.wyczysc_kanwe(ologi,orkowie,map);
+            }
             map[PEPE.getLx()][PEPE.getLy()].id=1;
             set_Colors();
             second_frame.change_data();
             System.out.println("PEPE HP @:"+PEPE.get_hp());
             past_lx= PEPE.getLx();
             past_ly=PEPE.getLy();
-            temp++;
         }
+
         System.out.println("PEPE HP 2:"+PEPE.get_hp());
         System.out.println("zabite orki: " + corks);
         System.out.println("zabite ologi: " + cologs);

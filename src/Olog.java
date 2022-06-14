@@ -30,5 +30,5 @@ public class Olog extends Postac{
     {
         return this.hp;
     }
-
+    public void DIE(){this.hp=0;}
 }
