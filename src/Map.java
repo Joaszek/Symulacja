@@ -156,6 +156,7 @@ public class Map {
 
             for(Olog olog:ologi)
             {
+                //poruszanie się ologów
                 //map[olog.getLx()][olog.getLx()].Ologs.remove(olog);
                 //map[olog.getLx()][olog.getLy()].id=0;
                 //olog.walk(map,map[olog.getLx()][olog.getLy()]);
@@ -164,12 +165,14 @@ public class Map {
             }
             for(Ork ork:orkowie)
             {
+                //poruszanie się orkow
                  /*map[ork.getLx()][ork.getLx()].Orks.remove(ork);
                 map[ork.getLx()][ork.getLx()].id=0;
                 //ork.walk(map,map[ork.getLx()][ork.getLy()]);
                 map[ork.getLx()][ork.getLy()].Orks.add(ork);
                 map[ork.getLx()][ork.getLx()].id=4;*/
             }
+            //poruszanie się bohatera
             map[PEPE.getLx()][PEPE.getLy()].bohater.clear();
             map[PEPE.getLx()][PEPE.getLy()].id=0;
             PEPE.walk(map,map[PEPE.getLx()][PEPE.getLy()]);
@@ -178,6 +181,7 @@ public class Map {
             //flowers
             if(map[PEPE.getLx()][PEPE.getLy()].id==6)
             {
+                //ustawianie kwiatkow
                 PEPE.hp+=map[PEPE.getLx()][PEPE.getLy()].flowers.heal_me();
             }
             //fight
@@ -185,9 +189,10 @@ public class Map {
             else if(map[PEPE.getLx()][PEPE.getLy()].id==5)
             {
                 //ologs
-                System.out.println("HP:"+map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp());
-                System.out.println("Damage"+-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
+                System.out.println("HP Ologa:"+map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp());
+                System.out.println("Damage ologa"+-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
                 System.out.println("PEPE HP"+PEPE.get_hp());
+                System.out.println("PEPE Damage" + PEPE.get_attack());
                 while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp()>0)
                 {
                     PEPE.set_hp(-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
@@ -195,6 +200,7 @@ public class Map {
                     System.out.println("HP:"+map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp());
                     System.out.println("Damage"+-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
                     System.out.println("PEPE HP"+PEPE.get_hp());
+                    System.out.println("PEPE Damage" + PEPE.get_attack());
                 }
                 if(PEPE.get_hp()<=0)
                 {
@@ -206,20 +212,32 @@ public class Map {
             else if(map[PEPE.getLx()][PEPE.getLy()].id==4)
             {
                 //orks
-               // while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_hp()>0)
+                System.out.println("HP Orka:"+map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_hp());
+                System.out.println("Damage orka"+-3*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
+                System.out.println("PEPE HP"+PEPE.get_hp());
+                System.out.println("PEPE Damage" + PEPE.get_attack());
+                while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_hp()>0)
                 {
-                    //PEPE.set_hp(-10*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
-                    //map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).set_hp(-10*PEPE.get_attack());
+                    PEPE.set_hp(-3*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
+                    map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).set_hp(-10*PEPE.get_attack());
+                    System.out.println("HP Orka:"+map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_hp());
+                    System.out.println("Damage Orka"+-3*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
+                    System.out.println("PEPE HP"+PEPE.get_hp());
+                    System.out.println("PEPE Damage" + PEPE.get_attack());
                 }
-                //map[PEPE.getLx()][PEPE.getLy()].id=0;
-                //map[PEPE.getLx()][PEPE.getLy()].Orks.clear();
                 if(PEPE.get_hp()<=0)
                 {
                     break;
                 }
-
+                map[PEPE.getLx()][PEPE.getLy()].id=0;
+                map[PEPE.getLx()][PEPE.getLy()].Orks.clear();
             }
-
+            //itemy
+            else if (map[PEPE.getLx()][PEPE.getLy()].id==7)
+            {
+                //tu skonczyłes
+                //map[PEPE.getLx()][PEPE.getLy()].items
+            }
             //tu będzie ustawianie kolorów
             map[PEPE.getLx()][PEPE.getLy()].id=1;
             set_Colors();

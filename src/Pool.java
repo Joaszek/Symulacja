@@ -86,4 +86,8 @@ public class Pool {
     {
         this.babcia_mad=babcia_mad;
     }
+    //Item setting
+    public Item getItems() {
+        return items;
+    }
 }
