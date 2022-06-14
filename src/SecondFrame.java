@@ -77,7 +77,7 @@ public class SecondFrame extends JFrame {
     public void change_data()
     {
         kills.setText(String.valueOf(PEPE.getKills()));
-        hp.setText(String.valueOf(PEPE.hp));
+        hp.setText(String.valueOf((int)PEPE.hp));
     }
     public void changeSetBabcia()
     {

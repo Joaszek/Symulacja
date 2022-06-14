@@ -9,7 +9,7 @@ public class Map {
     private final int flowers;
     private final int orks;
     private final int ologs;
-    private int corks, cologs, cflowers;          //ile zabil orkow/ologow
+    private int cflowers;          //ile zabil orkow/ologow
     JPanel [][] panels;
     Pool[][] map;
     private final Bohater PEPE;
@@ -142,7 +142,6 @@ public class Map {
                     map[rand_1][rand_2].is_empty = false;
                     map[rand_1][rand_2].id=7;
                 }
-
         }
 
        myframe = new Frame(map);
@@ -151,7 +150,6 @@ public class Map {
         int past_ly=PEPE.getLy();
         while(PEPE.hp>0)
         {
-
             for(Olog olog:ologi)
             {
                 //poruszanie się ologów
@@ -188,18 +186,10 @@ public class Map {
             else if(map[PEPE.getLx()][PEPE.getLy()].id==5)
             {
                 //ologs
-                System.out.println("HP Ologa:"+map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp());
-                System.out.println("Damage ologa"+-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
-                System.out.println("PEPE HP"+PEPE.get_hp());
-                System.out.println("PEPE Damage" + PEPE.get_attack());
                 while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp()>0)
                 {
                     PEPE.set_hp(-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
                     map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).set_hp(-10*PEPE.get_attack());
-                    System.out.println("HP:"+map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp());
-                    System.out.println("Damage"+-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
-                    System.out.println("PEPE HP"+PEPE.get_hp());
-                    System.out.println("PEPE Damage" + PEPE.get_attack());
                 }
                 if(PEPE.get_hp()<=0)
                 {
@@ -207,23 +197,15 @@ public class Map {
                 }
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
                 map[PEPE.getLx()][PEPE.getLy()].Ologs.clear();
-                cologs++;
+                PEPE.addKill();
             }
             else if(map[PEPE.getLx()][PEPE.getLy()].id==4)
             {
                 //orks
-                System.out.println("HP Orka:"+map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_hp());
-                System.out.println("Damage orka"+-3*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
-                System.out.println("PEPE HP"+PEPE.get_hp());
-                System.out.println("PEPE Damage" + PEPE.get_attack());
                 while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_hp()>0)
                 {
                     PEPE.set_hp(-3*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
                     map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).set_hp(-10*PEPE.get_attack());
-                    System.out.println("HP Orka:"+map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_hp());
-                    System.out.println("Damage Orka"+-3*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
-                    System.out.println("PEPE HP"+PEPE.get_hp());
-                    System.out.println("PEPE Damage" + PEPE.get_attack());
                 }
                 if(PEPE.get_hp()<=0)
                 {
@@ -231,7 +213,8 @@ public class Map {
                 }
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
                 map[PEPE.getLx()][PEPE.getLy()].Orks.clear();
-                corks++;        //potem do wyjebania jak sie fight() ogarnie
+                PEPE.addKill();
+                //potem do wyjebania jak sie fight() ogarnie
             }
             //itemy
             else if (map[PEPE.getLx()][PEPE.getLy()].id==7)
@@ -241,16 +224,10 @@ public class Map {
                 PEPE.armor+=tempItem.getArmor();
                 PEPE.magic_resist+=tempItem.getMagic_resist();
                 PEPE.magic+=tempItem.getMagic();
-                System.out.println("DMG: "+PEPE.attack);
-                System.out.println("Armor: "+PEPE.armor);
-                System.out.println("Magic: "+PEPE.magic);
-                System.out.println("MR: "+PEPE.magic_resist);
             }
             else if(map[PEPE.getLx()][PEPE.getLy()].id==2){//babcia saida
                 //System.out.println("atak bez bonusu to: " + PEPE.get_attack());
                 PEPE.set_attack(babcia_sida.bonus_ad());
-                System.out.println("atak bonus to: " + babcia_sida.bonus_ad());
-                System.out.println("atak to: " + PEPE.get_attack());
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
                 second_frame.changeSetBabcia();
                 //zrobic wyczysc kanwe
@@ -263,15 +240,15 @@ public class Map {
             map[PEPE.getLx()][PEPE.getLy()].id=1;
             set_Colors();
             second_frame.change_data();
-            System.out.println("PEPE HP @:"+PEPE.get_hp());
             past_lx= PEPE.getLx();
             past_ly=PEPE.getLy();
         }
-
-        System.out.println("PEPE HP 2:"+PEPE.get_hp());
-        System.out.println("zabite orki: " + corks);
-        System.out.println("zabite ologi: " + cologs);
-        System.out.println("zjedzone kwiatki: " + cflowers);
+        System.out.println("Kills: "+PEPE.getKills());
+        System.out.println("MR: "+PEPE.magic_resist);
+        System.out.println("Armor"+PEPE.armor);
+        System.out.println("Magic: "+PEPE.magic);
+        System.out.println("Attack"+PEPE.get_attack());
+        System.out.println("Flowers eaten: "+cflowers);
         System.out.println("Koniec");
     }
     public void   set_Panels()

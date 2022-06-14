@@ -27,6 +27,7 @@ public class Bohater extends Postac {
         this.crit_chance = crit_chance;
         has_ring = false;
         has_babcia = false;
+        this.kills=0;
     }
     public int getKills()
     {
@@ -50,5 +51,9 @@ public class Bohater extends Postac {
     }
     public void set_attack(double bonus) {this.attack += bonus;}
     public void setHas_babcia(){this.has_babcia=true;}
+    public void addKill()
+    {
+        this.kills++;
+    }
 }
 

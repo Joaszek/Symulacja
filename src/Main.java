@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 /*
 TODO:
-babcie do ogarnięcia
 opcjonalnie:
 poruszanie się orków i ologów
  */
