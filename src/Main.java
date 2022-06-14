@@ -23,7 +23,7 @@ public class Main {
         2. Kiedy program ma się skończyć
          */
 
-        Babcia_Sida babcia_sida= new Babcia_Sida(8);
+        Babcia_Sida babcia_sida= new Babcia_Sida();
         Bohater PEPE = new Bohater(Double.parseDouble(args[0]), Double.parseDouble(args[1]), Integer.parseInt(args[2]), Double.parseDouble(args[3]));
 
         int flowers,orks,ologs;

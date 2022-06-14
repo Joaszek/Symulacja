@@ -56,8 +56,8 @@ public class Map {
         rand_2 = random.nextInt(28)+1;
         if(map[rand_1][rand_2].is_empty)
         {
-            babcia_sida.x=rand_1;
-            babcia_sida.y=rand_2;
+            babcia_sida.SetX(rand_1);
+            babcia_sida.SetY(rand_2);
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id = 2;
         }
@@ -241,6 +241,12 @@ public class Map {
             {
                 //tu skonczyłes
                 //map[PEPE.getLx()][PEPE.getLy()].items
+            }
+            else if(map[PEPE.getLx()][PEPE.getLy()].id==3){//babcia saida
+                //System.out.println("atak bez bonusu to: " + PEPE.get_attack());
+                PEPE.set_attack(babcia_sida.bonus_ad());
+                System.out.println("atak bonus to: " + babcia_sida.bonus_ad());
+                System.out.println("atak to: " + PEPE.get_attack());
             }
             //tu będzie ustawianie kolorów
             map[PEPE.getLx()][PEPE.getLy()].id=1;

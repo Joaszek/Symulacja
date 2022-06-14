@@ -48,6 +48,7 @@ public class Bohater extends Postac {
     {
         return this.attack;
     }
+    public void set_attack(double bonus) {this.attack += bonus;}
 
 }
 
