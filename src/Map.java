@@ -66,7 +66,9 @@ public class Map {
                 rand_1 = random.nextInt(28)+1;
                 rand_2 = random.nextInt(28)+1;
             }
-            orkowie.add(new Ork(rand_1,rand_2));
+            Ork temp_ork = new Ork(rand_1,rand_2);
+            orkowie.add(temp_ork);
+            map[rand_1][rand_2].Orks.add(temp_ork);
             //zrob imie
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id = 4;
@@ -79,7 +81,9 @@ public class Map {
                 rand_1 = random.nextInt(28)+1;
                 rand_2 = random.nextInt(28)+1;
             }
-            ologi.add(new Olog(rand_1,rand_2));
+            Olog temp_olog = new Olog(rand_1,rand_2);
+            ologi.add(temp_olog);
+            map[rand_1][rand_2].Ologs.add(temp_olog);
             //zrob imie
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id=5;
@@ -91,7 +95,9 @@ public class Map {
                 rand_1 = random.nextInt(28)+1;
                 rand_2 = random.nextInt(28)+1;
             }
-            babcie.add(new Babcia_MAD());
+            Babcia_MAD temp_babcia_m= new Babcia_MAD();
+            babcie.add(temp_babcia_m);
+            map[rand_1][rand_2].setBabcia_mad(temp_babcia_m);
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id = 3;
         }
@@ -103,7 +109,6 @@ public class Map {
                 rand_1 = random.nextInt(28)+1;
                 rand_2 = random.nextInt(28)+1;
             }
-            //kwiatki.add(new Flower());
             map[rand_1][rand_2].flowers=new Flower();
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id=6;
@@ -142,24 +147,28 @@ public class Map {
 
        myframe = new Frame(map);
        SecondFrame second_frame=new SecondFrame(PEPE,myframe);
-
+        int past_lx= PEPE.getLx();
+        int past_ly=PEPE.getLy();
+        //zeby pominąć pierwszą ture
+        int temp=0;
         while(PEPE.hp>0)
         {
+
             for(Olog olog:ologi)
             {
-                map[olog.getLx()][olog.getLx()].Ologs.remove(olog);
-                map[olog.getLx()][olog.getLy()].id=0;
+                //map[olog.getLx()][olog.getLx()].Ologs.remove(olog);
+                //map[olog.getLx()][olog.getLy()].id=0;
                 //olog.walk(map,map[olog.getLx()][olog.getLy()]);
-                map[olog.getLx()][olog.getLy()].Ologs.add(olog);
-                map[olog.getLx()][olog.getLy()].id=5;
+                //map[olog.getLx()][olog.getLy()].Ologs.add(olog);
+                //map[olog.getLx()][olog.getLy()].id=5;
             }
             for(Ork ork:orkowie)
             {
-                map[ork.getLx()][ork.getLx()].Orks.remove(ork);
+                 /*map[ork.getLx()][ork.getLx()].Orks.remove(ork);
                 map[ork.getLx()][ork.getLx()].id=0;
                 //ork.walk(map,map[ork.getLx()][ork.getLy()]);
                 map[ork.getLx()][ork.getLy()].Orks.add(ork);
-                map[ork.getLx()][ork.getLx()].id=4;
+                map[ork.getLx()][ork.getLx()].id=4;*/
             }
             map[PEPE.getLx()][PEPE.getLy()].bohater.clear();
             map[PEPE.getLx()][PEPE.getLy()].id=0;
@@ -177,14 +186,14 @@ public class Map {
             {
                 //ologs
                 System.out.println("HP:"+map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp());
-                System.out.println("Damage"+-10*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
+                System.out.println("Damage"+-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
                 System.out.println("PEPE HP"+PEPE.get_hp());
                 while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp()>0)
                 {
-                    PEPE.set_hp(-10*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
+                    PEPE.set_hp(-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
                     map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).set_hp(-10*PEPE.get_attack());
                     System.out.println("HP:"+map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp());
-                    System.out.println("Damage"+-10*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
+                    System.out.println("Damage"+-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
                     System.out.println("PEPE HP"+PEPE.get_hp());
                 }
                 if(PEPE.get_hp()<=0)
@@ -192,7 +201,7 @@ public class Map {
                     break;
                 }
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
-                //map[PEPE.getLx()][PEPE.getLy()].Ologs.clear();
+                map[PEPE.getLx()][PEPE.getLy()].Ologs.clear();
             }
             else if(map[PEPE.getLx()][PEPE.getLy()].id==4)
             {
@@ -216,6 +225,9 @@ public class Map {
             set_Colors();
             second_frame.change_data();
             System.out.println("PEPE HP @:"+PEPE.get_hp());
+            past_lx= PEPE.getLx();
+            past_ly=PEPE.getLy();
+            temp++;
         }
         System.out.println("PEPE HP @:"+PEPE.get_hp());
         System.out.println("Koniec");

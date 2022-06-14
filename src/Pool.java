@@ -15,7 +15,7 @@ public class Pool {
     Flower flowers;
     Item items;
     Pierscien pierscien;
-    Babcia_MAD babcia_mads;
+    Babcia_MAD babcia_mad;
     Babcia_Sida babcia_sidas;
     ArrayList<Ork> Orks;
     ArrayList<Olog> Ologs;
@@ -81,5 +81,9 @@ public class Pool {
     {
         rand = random.nextInt(8);
         return rand;
+    }
+    public void setBabcia_mad(Babcia_MAD babcia_mad)
+    {
+        this.babcia_mad=babcia_mad;
     }
 }
