@@ -28,4 +28,5 @@ public class Item {
     {
         return this.magic_resist;
     }
+    public int getArmor() {return this.armor;}
 }

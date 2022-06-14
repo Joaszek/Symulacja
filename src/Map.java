@@ -44,12 +44,10 @@ public class Map {
         //add bohater
         if(map[rand_1][rand_2].is_empty)
         {
-            //bohater works
             PEPE.lx=rand_1;
             PEPE.ly=rand_2;
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id = 1;
-
         }
         //add babcia sida
         rand_1 = random.nextInt(28)+1;
@@ -140,6 +138,7 @@ public class Map {
             }
                 if(map[rand_1][rand_2].is_empty){
                     itemy[i]=new Item();
+                    map[rand_1][rand_2].item=itemy[i];
                     map[rand_1][rand_2].is_empty = false;
                     map[rand_1][rand_2].id=7;
                 }
@@ -239,8 +238,15 @@ public class Map {
             //itemy
             else if (map[PEPE.getLx()][PEPE.getLy()].id==7)
             {
-                //tu skonczyłes
-                //map[PEPE.getLx()][PEPE.getLy()].items
+                Item tempItem=map[PEPE.getLx()][PEPE.getLy()].getItem();
+                PEPE.attack+=tempItem.getItemDamage();
+                PEPE.armor+=tempItem.getArmor();
+                PEPE.magic_resist+=tempItem.getMagic_resist();
+                PEPE.magic+=tempItem.getMagic();
+                System.out.println("DMG: "+PEPE.attack);
+                System.out.println("Armor: "+PEPE.armor);
+                System.out.println("Magic: "+PEPE.magic);
+                System.out.println("MR: "+PEPE.magic_resist);
             }
             else if(map[PEPE.getLx()][PEPE.getLy()].id==3){//babcia saida
                 //System.out.println("atak bez bonusu to: " + PEPE.get_attack());
@@ -257,7 +263,7 @@ public class Map {
             past_ly=PEPE.getLy();
             temp++;
         }
-        System.out.println("PEPE HP @:"+PEPE.get_hp());
+        System.out.println("PEPE HP 2:"+PEPE.get_hp());
         System.out.println("zabite orki: " + corks);
         System.out.println("zabite ologi: " + cologs);
         System.out.println("zjedzone kwiatki: " + cflowers);

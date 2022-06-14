@@ -6,7 +6,7 @@ public class Bohater extends Postac {
     private int bonus_dmg_from_babcia;
     private int kills;
     private int look;
-    private int magic;
+    protected int magic;
     private boolean has_ring;
     private boolean has_babcia;
     private void Eat(){};
