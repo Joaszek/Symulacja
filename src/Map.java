@@ -9,6 +9,7 @@ public class Map {
     private final int flowers;
     private final int orks;
     private final int ologs;
+    private int corks, cologs, cflowers;          //ile zabil orkow/ologow
     JPanel [][] panels;
     Pool[][] map;
     private final Bohater PEPE;
@@ -183,6 +184,7 @@ public class Map {
             {
                 //ustawianie kwiatkow
                 PEPE.hp+=map[PEPE.getLx()][PEPE.getLy()].flowers.heal_me();
+                cflowers++;
             }
             //fight
             //przepisać do metody fight
@@ -208,6 +210,7 @@ public class Map {
                 }
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
                 map[PEPE.getLx()][PEPE.getLy()].Ologs.clear();
+                cologs++;
             }
             else if(map[PEPE.getLx()][PEPE.getLy()].id==4)
             {
@@ -231,6 +234,7 @@ public class Map {
                 }
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
                 map[PEPE.getLx()][PEPE.getLy()].Orks.clear();
+                corks++;        //potem do wyjebania jak sie fight() ogarnie
             }
             //itemy
             else if (map[PEPE.getLx()][PEPE.getLy()].id==7)
@@ -248,6 +252,9 @@ public class Map {
             temp++;
         }
         System.out.println("PEPE HP @:"+PEPE.get_hp());
+        System.out.println("zabite orki: " + corks);
+        System.out.println("zabite ologi: " + cologs);
+        System.out.println("zjedzone kwiatki: " + cflowers);
         System.out.println("Koniec");
     }
     public void   set_Panels()
