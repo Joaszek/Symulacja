@@ -256,7 +256,6 @@ public class Map {
                 //zrobic wyczysc kanwe
             }
             //tu będzie ustawianie kolorów
-            PEPE.set_hp(-2000);
             if(PEPE.hp<=0)
             {
                 babcia_sida.wyczysc_kanwe(ologi,orkowie,map);
