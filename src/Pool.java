@@ -13,7 +13,7 @@ public class Pool {
     int rand;
     public boolean is_empty;
     Flower flowers;
-    Item items;
+    Item item;
     Pierscien pierscien;
     Babcia_MAD babcia_mad;
     Babcia_Sida babcia_sidas;
@@ -87,7 +87,7 @@ public class Pool {
         this.babcia_mad=babcia_mad;
     }
     //Item setting
-    public Item getItems() {
-        return items;
+    public Item getItem() {
+        return this.item;
     }
 }

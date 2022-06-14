@@ -3,7 +3,6 @@ import java.util.Scanner;
 /*
 TODO:
 babcie do ogarnięcia
-itemy
 opcjonalnie:
 poruszanie się orków i ologów
  */
