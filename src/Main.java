@@ -2,8 +2,7 @@ import java.util.Scanner;
 
 /*
 TODO:
-opcjonalnie:
-poruszanie się orków i ologów
+porusznie się ologow 156
  */
 
 

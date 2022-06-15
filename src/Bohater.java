@@ -11,7 +11,12 @@ public class Bohater extends Postac {
     private boolean has_babcia;
     private void Eat(){};
     private void magic_dmg(){};
-    public void Eat_Pierogi(){};
+    public void Eat_Pierogi(){}
+
+
+
+
+    ;
 
 
     public boolean Eat_or_die() {

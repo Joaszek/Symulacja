@@ -150,21 +150,25 @@ public class Map {
         int past_ly=PEPE.getLy();
         while(PEPE.hp>0)
         {
+            int i=0;
             for(Olog olog:ologi)
             {
+                //najpewniej ten sam problem z pojawianiem sie kolorow
                 //poruszanie się ologów
-                //map[olog.getLx()][olog.getLx()].Ologs.remove(olog);
-                //map[olog.getLx()][olog.getLy()].id=0;
-                //olog.walk(map,map[olog.getLx()][olog.getLy()]);
-                //map[olog.getLx()][olog.getLy()].Ologs.add(olog);
-                //map[olog.getLx()][olog.getLy()].id=5;
+                map[olog.getLx()][olog.getLx()].Ologs.remove(olog);
+                map[olog.getLx()][olog.getLy()].id=0;
+                System.out.println(i);
+                olog.walk_stwory(map);
+                map[olog.getLx()][olog.getLy()].Ologs.add(olog);
+                map[olog.getLx()][olog.getLy()].id=5;
+                i++;
             }
             for(Ork ork:orkowie)
             {
                 //poruszanie się orkow
                  /*map[ork.getLx()][ork.getLx()].Orks.remove(ork);
                 map[ork.getLx()][ork.getLx()].id=0;
-                //ork.walk(map,map[ork.getLx()][ork.getLy()]);
+                //ork.walk_stwory(map,map[ork.getLx()][ork.getLy()]);
                 map[ork.getLx()][ork.getLy()].Orks.add(ork);
                 map[ork.getLx()][ork.getLx()].id=4;*/
             }
