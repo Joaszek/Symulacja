@@ -45,7 +45,7 @@ public class Main {
         */
         Babcia_Sida babcia_sida= new Babcia_Sida();
         Bohater PEPE = new Bohater(600, 60,50, 50);
-        new Map(50,100,100,PEPE,babcia_sida, 200);
+        new Map(50,54,100,PEPE,babcia_sida, 200);
         System.out.println("Koniec maina");
     }
 }

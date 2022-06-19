@@ -156,25 +156,34 @@ public class Map {
             for(Olog olog:ologi)
             {
                 //poruszanie się ologów
-                //wchodza na kwiatki,itemy itp
-                ////////////////////
+                //
                 /////////////
-                ////////////////
-                previousX=olog.getLx();
-                previousY=olog.getLy();
-                map[olog.getLx()][olog.getLx()].Ologs.remove(olog);
-
-                olog.walk_stwory(map);
-                while(map[olog.getLx()][olog.getLy()].id!=0)
+                /////////////
+                /////////////
+                int stay=can_go(map,olog.getLx(),olog.getLy());
+                if(stay==1)
                 {
-                    olog.lx=previousX;
-                    olog.ly=previousY;
-                    olog.walk_stwory(map);
-                    //Wchodzi w nieskonczoną petle
+                    //zostaje na miejscu
+                    //inaczej sie porusza
                 }
-                map[previousX][previousY].id=0;
-                map[olog.getLx()][olog.getLy()].Ologs.add(olog);
-                map[olog.getLx()][olog.getLy()].id=5;
+                else
+                {
+                    previousX=olog.getLx();
+                    previousY=olog.getLy();
+                    olog.walk_stwory(map);
+                    while(map[olog.getLx()][olog.getLy()].id!=0)
+                    {
+                        olog.lx=previousX;
+                        olog.ly=previousY;
+                        olog.walk_stwory(map);
+                        System.out.println(i);
+                    }
+                    map[previousX][previousY].Ologs.remove(olog);
+                    map[olog.getLx()][olog.getLy()].id=5;
+                    map[olog.getLx()][olog.getLy()].Ologs.add(olog);
+                    map[previousX][previousY].id=0;
+                }
+
                 i++;
             }
             for(Ork ork:orkowie)
@@ -350,5 +359,13 @@ public class Map {
                 }
             }
         }
+    }
+    private int can_go(Pool[][] map, int x, int y)
+    {
+        if(map[x-1][y-1].id!=0&&map[x][y-1].id!=0&&map[x+1][y-1].id!=0&&map[x-1][y].id!=0&&map[x+1][y].id!=0&&map[x-1][y+1].id!=0&&map[x][y+1].id!=0&&map[x+1][y+1].id!=0)
+        {
+            return 1;
+        }
+        return 0;
     }
 }

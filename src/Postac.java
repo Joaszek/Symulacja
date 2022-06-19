@@ -35,7 +35,7 @@ public abstract class Postac{
             ly += move[2*step+1];
 
             try{
-                Thread.sleep(300);
+                Thread.sleep(200);
             }
             catch (InterruptedException e)
             {

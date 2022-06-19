@@ -3,7 +3,7 @@ public class Olog extends Postac{
 
 
     private int mass;
-
+    private int verse;
     public void Eat_Pierogi(){};
     public void Scale_mass_to_dmg(){
         attack *= (double)mass/700;
@@ -31,17 +31,20 @@ public class Olog extends Postac{
         return this.hp;
     }
     public void DIE(){this.hp=0;}
-
+    int getVerse()
+    {
+        return verse;
+    }
     public void walk_stwory(Pool[][] pools)
     {
         int a = lx;
         int b = ly;
-        int verse=check_bounds(pools,lx,ly);
+        verse=check_bounds(pools,lx,ly);
         int i=0;
 
         while(true){
-
-            if(verse==3)break;
+            System.out.println("COS2");
+            //if(verse==3)break;
             int step = rand.nextInt(8) ;   //liczba 0 odpowiada za lewe gorne pole i rosna zgodnie z kierunkiem wskazowek zegara a w mainie bedzie to zamieniane na ruch
             int [] move = {-1,-1,0,-1,1,-1,1,0,1,1,0,1,-1,1,-1,0};
             lx += move[2*step];
