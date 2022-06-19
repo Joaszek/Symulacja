@@ -16,21 +16,36 @@ public class Main {
 	// write your code here
         /*
         PARAMETRY NA TERAZ: HP,ATTACK,MAGIC,CRIT,ORKS,OLOGS,FLOWERS,ILOSC ITERACJI
-        1.Zróbmy z 10 miejsce w których jest babcia madagaskar bo 1 na 900 to trochę mało
+
         2. Kiedy program ma się skończyć
          */
-
+        //BARTEK zostaw twój kod z tym args żeby było do badań
+        /*double tab[]= new double [8];
+        Scanner scanner = new Scanner(System.in);
         Babcia_Sida babcia_sida= new Babcia_Sida();
-        Bohater PEPE = new Bohater(Double.parseDouble(args[0]), Double.parseDouble(args[1]), Integer.parseInt(args[2]), Double.parseDouble(args[3]));
+        System.out.println("Wpisz HP bohatera: ");
+        tab[0]=scanner.nextDouble();
+        System.out.println("Wpisz atak bohatera: ");
+        tab[1]=scanner.nextDouble();
+        System.out.println("Wpisz magie bohatera: ");
+        tab[2]=scanner.nextDouble();
+        System.out.println("Wpisz szanse na trafienie krytyczne bohatera: ");
+        tab[3]=scanner.nextDouble();
+
+        Bohater PEPE = new Bohater(tab[0], tab[1],tab[2], tab[3]);
 
         int flowers,orks,ologs;
+        System.out.println("Wpisz liczbe orkow(0-300): ");
+        orks=scanner.nextInt();
+        System.out.println("Wpisz liczbe ologow(0-300): ");
+        ologs=scanner.nextInt();
+        System.out.println("Wpisz liczbe kwiatow(0-100): ");
+        flowers=scanner.nextInt();
 
-        orks = Integer.parseInt(args[4]);
-        ologs = Integer.parseInt(args[5]);
-        flowers= Integer.parseInt(args[6]);
-
-        //System.out.println("parametry: " + args[0] + args[1] + args[2] + args[3] + args[4] + args[5] + args[6]);
-
-        new Map(flowers,ologs,orks,PEPE,babcia_sida, Integer.parseInt(args[7]));
+        */
+        Babcia_Sida babcia_sida= new Babcia_Sida();
+        Bohater PEPE = new Bohater(600, 60,50, 50);
+        new Map(50,100,100,PEPE,babcia_sida, 200);
+        System.out.println("Koniec maina");
     }
 }

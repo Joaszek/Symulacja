@@ -43,7 +43,7 @@ public class Pool {
 
     public boolean check()
     {
-        if(getolog()&&getork()&&getbohater())return true;
+        if(getolog()||getork()||getbohater())return true;
         else
         {
             return false;

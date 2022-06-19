@@ -36,7 +36,7 @@ public class Olog extends Postac{
     {
         int a = lx;
         int b = ly;
-        int verse=check_bounds(pools);
+        int verse=check_bounds(pools,lx,ly);
         int i=0;
 
         while(true){
@@ -62,7 +62,7 @@ public class Olog extends Postac{
 
         }
     }
-    private int check_bounds(Pool[][] pools)
+    private int check_bounds(Pool[][] pools, int lx, int ly)
     {
         int verse=0;
         if(!pools[lx-1][ly-1].check()&&!pools[lx-1][ly].check()&&!pools[lx-1][ly+1].check())

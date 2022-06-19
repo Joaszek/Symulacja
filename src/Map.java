@@ -151,14 +151,28 @@ public class Map {
         while(PEPE.hp>0)
         {
             int i=0;
+            int previousX;
+            int previousY;
             for(Olog olog:ologi)
             {
-                //najpewniej ten sam problem z pojawianiem sie kolorow
                 //poruszanie się ologów
+                //wchodza na kwiatki,itemy itp
+                ////////////////////
+                /////////////
+                ////////////////
+                previousX=olog.getLx();
+                previousY=olog.getLy();
                 map[olog.getLx()][olog.getLx()].Ologs.remove(olog);
-                map[olog.getLx()][olog.getLy()].id=0;
-                System.out.println(i);
+
                 olog.walk_stwory(map);
+                while(map[olog.getLx()][olog.getLy()].id!=0)
+                {
+                    olog.lx=previousX;
+                    olog.ly=previousY;
+                    olog.walk_stwory(map);
+                    //Wchodzi w nieskonczoną petle
+                }
+                map[previousX][previousY].id=0;
                 map[olog.getLx()][olog.getLy()].Ologs.add(olog);
                 map[olog.getLx()][olog.getLy()].id=5;
                 i++;

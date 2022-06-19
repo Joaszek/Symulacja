@@ -6,7 +6,7 @@ public class Bohater extends Postac {
     private int bonus_dmg_from_babcia;
     private int kills;
     private int look;
-    protected int magic;
+    protected double magic;
     private boolean has_ring;
     private boolean has_babcia;
     private void Eat(){};
@@ -14,17 +14,12 @@ public class Bohater extends Postac {
     public void Eat_Pierogi(){}
 
 
-
-
-    ;
-
-
     public boolean Eat_or_die() {
         return false;
     }   //co? generalnie ten interfejs byl bez sensu
 
 
-    public Bohater(double hp, double attack, int magic, double crit_chance){
+    public Bohater(double hp, double attack, double magic, double crit_chance){
         this.MAX_HP=hp;//parametry beda brane z commandline
         this.hp = hp;
         this.attack = attack;
