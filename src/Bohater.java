@@ -37,7 +37,7 @@ public class Bohater extends Postac {
     public int getBonus_dmg_from_babcia() {
         return bonus_dmg_from_babcia;
     }
-    public void set_hp(double heal)
+    public void heal(double heal)
     {
         this.hp+=heal;
     }
@@ -55,5 +55,6 @@ public class Bohater extends Postac {
     {
         this.kills++;
     }
+    public void set_hp(double x){this.hp = x;}
 }
 

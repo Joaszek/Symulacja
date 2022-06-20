@@ -15,14 +15,14 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         /*
-        PARAMETRY NA TERAZ: HP,ATTACK,MAGIC,CRIT,ORKS,OLOGS,FLOWERS,ILOSC ITERACJI
+        PARAMETRY NA TERAZ: flowers/ologs/orks/hp
 
         2. Kiedy program ma się skończyć
          */
         //BARTEK zostaw twój kod z tym args żeby było do badań
-        /*double tab[]= new double [8];
+        //double tab[]= new double [8];
         Scanner scanner = new Scanner(System.in);
-        Babcia_Sida babcia_sida= new Babcia_Sida();
+        /*Babcia_Sida babcia_sida= new Babcia_Sida();
         System.out.println("Wpisz HP bohatera: ");
         tab[0]=scanner.nextDouble();
         System.out.println("Wpisz atak bohatera: ");
@@ -43,9 +43,16 @@ public class Main {
         flowers=scanner.nextInt();
 
         */
+
+        //System.out.println("aby wlaczyc w trybie badan wcisnij 0");
+        System.out.println("podaj liczbe iteracji: ");
+        int iterations = scanner.nextInt();     //bo mi sie nie chce myslec xd, pamietaj zeby bylo tyle co linijek w txt z parametrami bo jak nie to nie wiem co sie stanie
         Babcia_Sida babcia_sida= new Babcia_Sida();
         Bohater PEPE = new Bohater(600, 60,50, 50);
-        new Map(50,54,100,PEPE,babcia_sida, 200);
+        new Map(babcia_sida, PEPE, iterations);
         System.out.println("Koniec maina");
+
+
+
     }
 }

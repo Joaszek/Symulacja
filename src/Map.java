@@ -6,10 +6,12 @@ import java.util.Random;
 public class Map {
     private final int sizeX;
     private final int sizeY;
-    private final int flowers;
-    private final int orks;
-    private final int ologs;
-    private int cflowers;          //ile zabil orkow/ologow
+    private int flowers;
+    private int orks;
+    private int ologs;
+    private static int cflowers;          //ile zjadl kwiatkow
+    private static int cologs;
+    private static int corks;
     JPanel [][] panels;
     Pool[][] map;
     private final Bohater PEPE;
@@ -20,19 +22,22 @@ public class Map {
     private ArrayList<Flower> kwiatki = new ArrayList<>();
     private Item[] itemy = new Item[30];
     Frame myframe;
-    Map(int flowers, int ologs, int orks, Bohater PEPE, Babcia_Sida babcia_sida, int ilosc_iteracji)
+    Map(Babcia_Sida babcia_sida, Bohater PEPE, int iterations)
     {
         this.sizeX = 30;
         this.sizeY = 30;
-        this.flowers=flowers;
-        this.ologs=ologs;
-        this.orks=orks;
-        this.PEPE=PEPE;
-        this.babcia_sida=babcia_sida;
-
+        this.PEPE = PEPE;
+        this.babcia_sida = babcia_sida;
+        for(int i=0; i<iterations;i++){
+        new Research(iterations);
+        this.flowers = Research.getParameters()[0];
+        this.ologs = Research.getParameters()[1];
+        this.orks = Research.getParameters()[2];
+        PEPE.set_hp(Research.getParameters()[3]);
 
         set_Map();
 
+    }
     }
     public void set_Map()
     {
@@ -215,7 +220,7 @@ public class Map {
                 //ologs
                 while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp()>0)
                 {
-                    PEPE.set_hp(-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
+                    PEPE.heal(-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
                     map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).set_hp(-10*PEPE.get_attack());
                 }
                 if(PEPE.get_hp()<=0)
@@ -225,13 +230,14 @@ public class Map {
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
                 map[PEPE.getLx()][PEPE.getLy()].Ologs.clear();
                 PEPE.addKill();
+                cologs++;
             }
             else if(map[PEPE.getLx()][PEPE.getLy()].id==4)
             {
                 //orks
                 while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_hp()>0)
                 {
-                    PEPE.set_hp(-3*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
+                    PEPE.heal(-3*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
                     map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).set_hp(-10*PEPE.get_attack());
                 }
                 if(PEPE.get_hp()<=0)
@@ -241,6 +247,7 @@ public class Map {
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
                 map[PEPE.getLx()][PEPE.getLy()].Orks.clear();
                 PEPE.addKill();
+                corks++;
                 //potem do wyjebania jak sie fight() ogarnie
             }
             //itemy
@@ -277,6 +284,7 @@ public class Map {
         System.out.println("Attack"+PEPE.get_attack());
         System.out.println("Flowers eaten: "+cflowers);
         System.out.println("Koniec");
+        Research.saveTxt();
     }
     public void   set_Panels()
     {
@@ -367,5 +375,16 @@ public class Map {
             return 1;
         }
         return 0;
+    }
+
+    public static String getflowers(){
+        return String.valueOf(cflowers);
+    }
+
+    public static String getologs() {
+        return String.valueOf(cologs);
+    }
+    public static String getorks(){
+        return String.valueOf(corks);
     }
 }
