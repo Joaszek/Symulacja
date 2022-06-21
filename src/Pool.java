@@ -1,7 +1,5 @@
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.Flow;
 
 //trzeba dodać gettery aby zwracały co jest w klasie Pool
 
@@ -14,7 +12,7 @@ public class Pool {
     public boolean is_empty;
     Flower flowers;
     Item item;
-    Pierscien pierscien;
+    Ring ring;
     Babcia_MAD babcia_mad;
     Babcia_Sida babcia_sidas;
     ArrayList<Ork> Orks;

@@ -1,15 +1,8 @@
 public class Ork extends Postac{
     //atakuja tylko jak sa na tym samym polu
 
-    private double skill_issue;      //co to robilo? obnizalo czy negowalo zadane dmg?
-    private int chance_to_see;
-
-
     public Ork(int lx, int ly){
         MAX_HP=rand.nextInt(20)+320;
-        skill_issue = rand.nextDouble(50);        //losuje od 0 do 1; co to jest
-        skill_issue+=50;
-        chance_to_see = rand.nextInt(101);//szansa na zobaczenie I guess
         this.lx =lx;
         this.ly =ly;
         this.attack=rand.nextInt(40);
@@ -17,6 +10,7 @@ public class Ork extends Postac{
         this.crit_chance=0;
         this.hp=MAX_HP;
         this.magic_resist=0;
+        this.id = 4;
     }
 
     @Override
@@ -34,17 +28,19 @@ public class Ork extends Postac{
         return attack;
     }
 
-    public double get_hp() {
-        return this.hp;
-    }
 
-    public double get_attack() {
-        return this.attack;
-    }
-
-    public void set_hp(double damage) {
-        this.hp+=damage;
-    }
 
     public void DIE(){this.hp=0;}
+    public void walk(Pool map[][], Ork orc) {
+        super.walk(map);
+        while(map[lx][ly].id!=0){       //idk jak inaczej zrobic ale dziala :D
+            lx=plx;
+            ly=ply;
+            super.walk(map);
+        }
+        map[plx][ply].Orks.remove(orc);
+        map[plx][ply].id=0;
+        map[lx][ly].Orks.add(orc);
+        map[lx][ly].id=4;
+    }
 }

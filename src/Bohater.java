@@ -28,33 +28,37 @@ public class Bohater extends Postac {
         has_ring = false;
         has_babcia = false;
         this.kills=0;
+        this.id = 1;
     }
+
+    @Override
+    public void walk(Pool map[][]) {
+        super.walk(map);
+        try{
+            Thread.sleep(100);                  //tylko tu zeby ruch nie trwal 200 sekund ani 0
+        }
+        catch (InterruptedException e)
+        {
+
+        }
+    }
+
+    // public void fight(){};
+
+
     public int getKills()
     {
         return kills;
     }
-
     public int getBonus_dmg_from_babcia() {
         return bonus_dmg_from_babcia;
     }
-    public void heal(double heal)
-    {
-        this.hp+=heal;
-    }
-    public double get_hp()
-    {
-        return this.hp;
-    }
-    public double get_attack()
-    {
-        return this.attack;
-    }
-    public void set_attack(double bonus) {this.attack += bonus;}
+    public void set_bonus_attack(double bonus) {this.attack += bonus;}
     public void setHas_babcia(){this.has_babcia=true;}
     public void addKill()
     {
         this.kills++;
     }
-    public void set_hp(double x){this.hp = x;}
+    public void set_hp(double hp){this.hp = hp;}
 }
 

@@ -16,8 +16,8 @@ public class Map {
     Pool[][] map;
     private final Bohater PEPE;
     private final Babcia_Sida babcia_sida;
-    private ArrayList<Ork> orkowie = new ArrayList<>();
-    private ArrayList<Olog> ologi = new ArrayList<>();
+    private static ArrayList<Ork> orcs = new ArrayList<>();
+    private static ArrayList<Olog> ologi = new ArrayList<>();
     private ArrayList<Babcia_MAD> babcie = new ArrayList<>();
     private ArrayList<Flower> kwiatki = new ArrayList<>();
     private Item[] itemy = new Item[30];
@@ -71,7 +71,7 @@ public class Map {
                 rand_2 = random.nextInt(28)+1;
             }
             Ork temp_ork = new Ork(rand_1,rand_2);
-            orkowie.add(temp_ork);
+            orcs.add(temp_ork);
             map[rand_1][rand_2].Orks.add(temp_ork);
             //zrob imie
             map[rand_1][rand_2].is_empty = false;
@@ -123,14 +123,14 @@ public class Map {
         rand_2 = random.nextInt(28)+1;
         if(map[rand_1][rand_2].is_empty){
             //dodac szczegoly pierscienia
-            new Pierscien("cos1");
+            new Ring();
             map[rand_1][rand_2].id = 8;
         }
         rand_1 = random.nextInt(28)+1;
         rand_2 = random.nextInt(28)+1;
         if(map[rand_1][rand_2].is_empty)
         {
-            new Pierscien("Cos2");
+            new Ring();
             map[rand_1][rand_2].id=8;
         }
         //add item
@@ -166,44 +166,20 @@ public class Map {
                 /////////////
                 /////////////
                 int stay=can_go(map,olog.getLx(),olog.getLy());
-                if(stay==1)
+                if(stay!=1)
                 {
-                    //zostaje na miejscu
-                    //inaczej sie porusza
+                    olog.walk(map,olog);
                 }
-                else
-                {
-                    previousX=olog.getLx();
-                    previousY=olog.getLy();
-                    olog.walk_stwory(map);
-                    while(map[olog.getLx()][olog.getLy()].id!=0)
-                    {
-                        olog.lx=previousX;
-                        olog.ly=previousY;
-                        olog.walk_stwory(map);
-                        System.out.println(i);
-                    }
-                    map[previousX][previousY].Ologs.remove(olog);
-                    map[olog.getLx()][olog.getLy()].id=5;
-                    map[olog.getLx()][olog.getLy()].Ologs.add(olog);
-                    map[previousX][previousY].id=0;
-                }
-
                 i++;
             }
-            for(Ork ork:orkowie)
+            for(Ork ork: orcs)
             {
-                //poruszanie się orkow
-                 /*map[ork.getLx()][ork.getLx()].Orks.remove(ork);
-                map[ork.getLx()][ork.getLx()].id=0;
-                //ork.walk_stwory(map,map[ork.getLx()][ork.getLy()]);
-                map[ork.getLx()][ork.getLy()].Orks.add(ork);
-                map[ork.getLx()][ork.getLx()].id=4;*/
+                ork.walk(map,ork);
             }
             //poruszanie się bohatera
             map[PEPE.getLx()][PEPE.getLy()].bohater.clear();
             map[PEPE.getLx()][PEPE.getLy()].id=0;
-            PEPE.walk(map,map[PEPE.getLx()][PEPE.getLy()]);
+            PEPE.walk(map);
             map[PEPE.getLx()][PEPE.getLy()].bohater.add(PEPE);
 
             //flowers
@@ -220,8 +196,8 @@ public class Map {
                 //ologs
                 while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp()>0)
                 {
-                    PEPE.heal(-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
-                    map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).set_hp(-10*PEPE.get_attack());
+                    PEPE.change_hp(-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
+                    map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).change_hp(-10*PEPE.get_attack());
                 }
                 if(PEPE.get_hp()<=0)
                 {
@@ -237,8 +213,8 @@ public class Map {
                 //orks
                 while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_hp()>0)
                 {
-                    PEPE.heal(-3*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
-                    map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).set_hp(-10*PEPE.get_attack());
+                    PEPE.change_hp(-3*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
+                    map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).change_hp(-10*PEPE.get_attack());
                 }
                 if(PEPE.get_hp()<=0)
                 {
@@ -261,7 +237,7 @@ public class Map {
             }
             else if(map[PEPE.getLx()][PEPE.getLy()].id==2){//babcia saida
                 //System.out.println("atak bez bonusu to: " + PEPE.get_attack());
-                PEPE.set_attack(babcia_sida.bonus_ad());
+                PEPE.set_bonus_attack(babcia_sida.bonus_ad());
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
                 second_frame.changeSetBabcia();
                 //zrobic wyczysc kanwe
@@ -269,7 +245,7 @@ public class Map {
             //tu będzie ustawianie kolorów
             if(PEPE.hp<=0)
             {
-                babcia_sida.wyczysc_kanwe(ologi,orkowie,map);
+                babcia_sida.wyczysc_kanwe(ologi, orcs,map);
             }
             map[PEPE.getLx()][PEPE.getLy()].id=1;
             set_Colors();
@@ -377,10 +353,10 @@ public class Map {
         return 0;
     }
 
+
     public static String getflowers(){
         return String.valueOf(cflowers);
     }
-
     public static String getologs() {
         return String.valueOf(cologs);
     }
