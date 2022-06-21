@@ -31,16 +31,19 @@ public class Bohater extends Postac {
         this.id = 1;
     }
 
-    @Override
-    public void walk(Pool map[][]) {
+
+    public void walk(Pool map[][], Bohater pepe) {
         super.walk(map);
+        map[lx][ly].bohater.clear();
+        map[plx][ply].id=0;
+        map[lx][ly].bohater.add(pepe);
         try{
             Thread.sleep(100);                  //tylko tu zeby ruch nie trwal 200 sekund ani 0
         }
         catch (InterruptedException e)
         {
-
         }
+
     }
 
     // public void fight(){};

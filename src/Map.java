@@ -160,28 +160,22 @@ public class Map {
             int previousY;
             for(Olog olog:ologi)
             {
-                //poruszanie się ologów
-                //
-                /////////////
-                /////////////
-                /////////////
                 int stay=can_go(map,olog.getLx(),olog.getLy());
                 if(stay!=1)
                 {
                     olog.walk(map,olog);
                 }
-                i++;
             }
             for(Ork ork: orcs)
             {
-                ork.walk(map,ork);
+                int stay=can_go(map,ork.getLx(),ork.getLy());
+                if(stay!=1)
+                {
+                    ork.walk(map,ork);
+                }
             }
             //poruszanie się bohatera
-            map[PEPE.getLx()][PEPE.getLy()].bohater.clear();
-            map[PEPE.getLx()][PEPE.getLy()].id=0;
-            PEPE.walk(map);
-            map[PEPE.getLx()][PEPE.getLy()].bohater.add(PEPE);
-
+            PEPE.walk(map, PEPE);
             //flowers
             if(map[PEPE.getLx()][PEPE.getLy()].id==6)
             {
