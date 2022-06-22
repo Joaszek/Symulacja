@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         /*
-        PARAMETRY NA TERAZ: flowers/ologs/orks/hp
+        PARAMETRY NA TERAZ: flowers/ologs/orks/number of items/hp/attack/
 
         2. Kiedy program ma się skończyć
          */
@@ -48,7 +48,7 @@ public class Main {
         System.out.println("podaj liczbe iteracji: ");
         int iterations = scanner.nextInt();     //bo mi sie nie chce myslec xd, pamietaj zeby bylo tyle co linijek w txt z parametrami bo jak nie to nie wiem co sie stanie
         Babcia_Sida babcia_sida= new Babcia_Sida();
-        Bohater PEPE = new Bohater(600, 60,50, 50);
+        Bohater PEPE = new Bohater(1000);
         new Map(babcia_sida, PEPE, iterations);
         System.out.println("Koniec maina");
 

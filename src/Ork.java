@@ -7,29 +7,9 @@ public class Ork extends Postac{
         this.ly =ly;
         this.attack=rand.nextInt(40);
         this.armor=rand.nextInt(10);
-        this.crit_chance=0;
         this.hp=MAX_HP;
-        this.magic_resist=0;
         this.id = 4;
     }
-
-    @Override
-    public void Eat_Pierogi() {
-        this.hp=MAX_HP;
-    }
-
-
-    public void get_dmg(double dmg)
-    {
-        this.hp-=dmg;
-    }
-    public double do_dmg()
-    {
-        return attack;
-    }
-
-
-
     public void DIE(){this.hp=0;}
     public void walk(Pool map[][], Ork orc) {
         super.walk(map);
@@ -38,9 +18,9 @@ public class Ork extends Postac{
             ly=ply;
             super.walk(map);
         }
-        map[plx][ply].Orks.remove(orc);
+        map[plx][ply].orks.remove(orc);
         map[plx][ply].id=0;
-        map[lx][ly].Orks.add(orc);
+        map[lx][ly].orks.add(orc);
         map[lx][ly].id=4;
     }
 }

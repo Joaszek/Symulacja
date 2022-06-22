@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Map {
+    Random rand = new Random();
     private final int sizeX;
     private final int sizeY;
     private int flowers;
     private int orks;
     private int ologs;
+    private int rand_1, rand_2;
     private static int cflowers;          //ile zjadl kwiatkow
     private static int cologs;
     private static int corks;
@@ -16,8 +18,9 @@ public class Map {
     Pool[][] map;
     private final Bohater PEPE;
     private final Babcia_Sida babcia_sida;
-    private static ArrayList<Ork> orcs = new ArrayList<>();
-    private static ArrayList<Olog> ologi = new ArrayList<>();
+    private static ArrayList<Ring> rings = new ArrayList<>();
+    private  ArrayList<Ork> orcs = new ArrayList<>();
+    private ArrayList<Olog> ologi = new ArrayList<>();
     private ArrayList<Babcia_MAD> babcie = new ArrayList<>();
     private ArrayList<Flower> kwiatki = new ArrayList<>();
     private Item[] itemy = new Item[30];
@@ -29,11 +32,12 @@ public class Map {
         this.PEPE = PEPE;
         this.babcia_sida = babcia_sida;
         for(int i=0; i<iterations;i++){
-        new Research(iterations);
+        new Research();
         this.flowers = Research.getParameters()[0];
         this.ologs = Research.getParameters()[1];
         this.orks = Research.getParameters()[2];
-        PEPE.set_hp(Research.getParameters()[3]);
+        PEPE.set_hp(Research.getParameters()[4]);
+        PEPE.set_attack(Research.getParameters()[5]);
 
         set_Map();
 
@@ -43,9 +47,7 @@ public class Map {
     {
         //setting pools
         setMap();
-        Random random = new Random();
-        int rand_1 = random.nextInt(28)+1;
-        int rand_2 = random.nextInt(28)+1;
+        random();       //losowanie
         //add bohater
         if(map[rand_1][rand_2].is_empty)
         {
@@ -55,8 +57,7 @@ public class Map {
             map[rand_1][rand_2].id = 1;
         }
         //add babcia sida
-        rand_1 = random.nextInt(28)+1;
-        rand_2 = random.nextInt(28)+1;
+        random();
         if(map[rand_1][rand_2].is_empty)
         {
             babcia_sida.SetX(rand_1);
@@ -67,13 +68,11 @@ public class Map {
         //add orks
         for(int i = 0; i<orks; i++) {
             while (!map[rand_1][rand_2].is_empty) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
-                rand_1 = random.nextInt(28)+1;
-                rand_2 = random.nextInt(28)+1;
+                random();;
             }
             Ork temp_ork = new Ork(rand_1,rand_2);
             orcs.add(temp_ork);
-            map[rand_1][rand_2].Orks.add(temp_ork);
-            //zrob imie
+            map[rand_1][rand_2].orks.add(temp_ork);
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id = 4;
         }
@@ -82,13 +81,11 @@ public class Map {
         for(int i = 0; i<ologs; i++){
             while(!map[rand_1][rand_2].is_empty)
             {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
-                rand_1 = random.nextInt(28)+1;
-                rand_2 = random.nextInt(28)+1;
+                random();
             }
             Olog temp_olog = new Olog(rand_1,rand_2);
             ologi.add(temp_olog);
-            map[rand_1][rand_2].Ologs.add(temp_olog);
-            //zrob imie
+            map[rand_1][rand_2].ologs.add(temp_olog);
             map[rand_1][rand_2].is_empty = false;
             map[rand_1][rand_2].id=5;
         }
@@ -96,8 +93,7 @@ public class Map {
         for(int i = 0; i<10; i++){
             while(!map[rand_1][rand_2].is_empty)
             {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
-                rand_1 = random.nextInt(28)+1;
-                rand_2 = random.nextInt(28)+1;
+                random();
             }
             Babcia_MAD temp_babcia_m= new Babcia_MAD();
             babcie.add(temp_babcia_m);
@@ -110,8 +106,7 @@ public class Map {
         for(int i = 0; i<flowers; i++){
             while(!map[rand_1][rand_2].is_empty)    //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
             {
-                rand_1 = random.nextInt(28)+1;
-                rand_2 = random.nextInt(28)+1;
+                random();
             }
             map[rand_1][rand_2].flowers=new Flower();
             map[rand_1][rand_2].is_empty = false;
@@ -119,27 +114,12 @@ public class Map {
 
         }
         //add pierscien
-        rand_1 = random.nextInt(28)+1;
-        rand_2 = random.nextInt(28)+1;
-        if(map[rand_1][rand_2].is_empty){
-            //dodac szczegoly pierscienia
-            new Ring();
-            map[rand_1][rand_2].id = 8;
-        }
-        rand_1 = random.nextInt(28)+1;
-        rand_2 = random.nextInt(28)+1;
-        if(map[rand_1][rand_2].is_empty)
-        {
-            new Ring();
-            map[rand_1][rand_2].id=8;
-        }
+            setRing(11);
+            setRing(0.121);
         //add item
-
-       for(int i = 0; i<30; i++){      //to do itema potem
-
+       for(int i = 0; i<Research.getParameters()[3]; i++){      //to do itema potem
             while(!map[rand_1][rand_2].is_empty) {   //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
-                rand_1 = random.nextInt(28)+1;
-                rand_2 = random.nextInt(28)+1;
+                random();
             }
                 if(map[rand_1][rand_2].is_empty){
                     itemy[i]=new Item();
@@ -151,13 +131,8 @@ public class Map {
 
        myframe = new Frame(map);
        SecondFrame second_frame=new SecondFrame(PEPE,myframe);
-        int past_lx= PEPE.getLx();
-        int past_ly=PEPE.getLy();
-        while(PEPE.hp>0)
+        while(!ologi.isEmpty() || !orcs.isEmpty())                //chodzenie etc
         {
-            int i=0;
-            int previousX;
-            int previousY;
             for(Olog olog:ologi)
             {
                 int stay=can_go(map,olog.getLx(),olog.getLy());
@@ -188,37 +163,39 @@ public class Map {
             else if(map[PEPE.getLx()][PEPE.getLy()].id==5)
             {
                 //ologs
-                while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_hp()>0)
+                while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].ologs.get(0).get_hp()>0)
                 {
-                    PEPE.change_hp(-3*map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).get_attack());
-                    map[PEPE.getLx()][PEPE.getLy()].Ologs.get(0).change_hp(-10*PEPE.get_attack());
+                    PEPE.change_hp(-3*map[PEPE.getLx()][PEPE.getLy()].ologs.get(0).get_attack());
+                    map[PEPE.getLx()][PEPE.getLy()].ologs.get(0).change_hp(-10*PEPE.get_attack());
                 }
                 if(PEPE.get_hp()<=0)
                 {
+                    babcia_sida.wyczysc_kanwe(ologi, orcs,map);
                     break;
                 }
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
-                map[PEPE.getLx()][PEPE.getLy()].Ologs.clear();
+                map[PEPE.getLx()][PEPE.getLy()].ologs.clear();
                 PEPE.addKill();
                 cologs++;
             }
             else if(map[PEPE.getLx()][PEPE.getLy()].id==4)
             {
                 //orks
-                while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_hp()>0)
+                while(PEPE.get_hp()>0&&map[PEPE.getLx()][PEPE.getLy()].orks.get(0).get_hp()>0)
                 {
-                    PEPE.change_hp(-3*map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).get_attack());
-                    map[PEPE.getLx()][PEPE.getLy()].Orks.get(0).change_hp(-10*PEPE.get_attack());
+                    PEPE.change_hp(-3*map[PEPE.getLx()][PEPE.getLy()].orks.get(0).get_attack());
+                    map[PEPE.getLx()][PEPE.getLy()].orks.get(0).change_hp(-10*PEPE.get_attack());
                 }
                 if(PEPE.get_hp()<=0)
                 {
+                    babcia_sida.wyczysc_kanwe(ologi, orcs,map);
                     break;
                 }
                 map[PEPE.getLx()][PEPE.getLy()].id=0;
-                map[PEPE.getLx()][PEPE.getLy()].Orks.clear();
+                map[PEPE.getLx()][PEPE.getLy()].orks.clear();
                 PEPE.addKill();
                 corks++;
-                //potem do wyjebania jak sie fight() ogarnie
+                //potem do wyjebania jak sie fight() ogarnie XD
             }
             //itemy
             else if (map[PEPE.getLx()][PEPE.getLy()].id==7)
@@ -226,8 +203,6 @@ public class Map {
                 Item tempItem=map[PEPE.getLx()][PEPE.getLy()].getItem();
                 PEPE.attack+=tempItem.getItemDamage();
                 PEPE.armor+=tempItem.getArmor();
-                PEPE.magic_resist+=tempItem.getMagic_resist();
-                PEPE.magic+=tempItem.getMagic();
             }
             else if(map[PEPE.getLx()][PEPE.getLy()].id==2){//babcia saida
                 //System.out.println("atak bez bonusu to: " + PEPE.get_attack());
@@ -236,29 +211,25 @@ public class Map {
                 second_frame.changeSetBabcia();
                 //zrobic wyczysc kanwe
             }
-            //tu będzie ustawianie kolorów
-            if(PEPE.hp<=0)
-            {
-                babcia_sida.wyczysc_kanwe(ologi, orcs,map);
+            else if(map[PEPE.getLx()][PEPE.getLy()].id==8 && PEPE.isHas_ring() == false){
+                map[PEPE.getLx()][PEPE.getLy()].rings.get(0).Power(PEPE);
+                PEPE.setHas_ring();
             }
+            //tu będzie ustawianie kolorów
             map[PEPE.getLx()][PEPE.getLy()].id=1;
             set_Colors();
             second_frame.change_data();
-            past_lx= PEPE.getLx();
-            past_ly=PEPE.getLy();
         }
-        System.out.println("Kills: "+PEPE.getKills());
+        for(Ork orc: orcs){
+            System.out.println(orc.get_hp());
+        }
+       /* System.out.println("Kills: "+PEPE.getKills());
         System.out.println("MR: "+PEPE.magic_resist);
         System.out.println("Armor"+PEPE.armor);
-        System.out.println("Magic: "+PEPE.magic);
         System.out.println("Attack"+PEPE.get_attack());
         System.out.println("Flowers eaten: "+cflowers);
-        System.out.println("Koniec");
-        Research.saveTxt();
-    }
-    public void   set_Panels()
-    {
-        panels = new JPanel[sizeX][sizeY];
+        System.out.println("Koniec");*/
+        Research.saveTxt(PEPE);
     }
     private void setMap()
     {
@@ -347,7 +318,20 @@ public class Map {
         return 0;
     }
 
+    private void random(){
+        rand_1 = rand.nextInt(28)+1;
+        rand_2 = rand.nextInt(28)+1;
+    }
 
+    private void setRing(double power){
+        while(!map[rand_1][rand_2].is_empty)    //po to jezeli sie nie wylosuje puste pole to losowalo jeszcze raz bez psucia fora
+        {
+            random();
+        }
+        map[rand_1][rand_2].is_empty = false;
+        map[rand_1][rand_2].id=8;
+        map[rand_1][rand_2].rings.add(new Ring(power));
+    }
     public static String getflowers(){
         return String.valueOf(cflowers);
     }
@@ -357,4 +341,8 @@ public class Map {
     public static String getorks(){
         return String.valueOf(corks);
     }
+
+
+
+
 }

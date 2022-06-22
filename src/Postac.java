@@ -7,17 +7,10 @@ public abstract class Postac{
     protected Random rand = new Random(100000);
     protected int lx, ly, plx, ply;                          //koordynaty postaci na mapie (lewy gorny to 0,0);
     protected double hp;
-    protected double attack=1; //tymczasowo
-    protected double crit_chance;
+    protected double attack;
     protected double armor;
-    protected double magic_resist;
     protected double MAX_HP;
     protected int id;
-
-    public ArrayList<Item> items;
-
-    private void IsPool (int x, int y){};
-    public abstract void Eat_Pierogi();
 
     public void walk(Pool map[][]){                   //chodzenie
         plx = lx;
@@ -44,7 +37,7 @@ public abstract class Postac{
     }
     public double get_attack()
     {
-        return this.attack;
+        return attack;
     }
     public void set_attack(double attack){
         this.attack = attack;
@@ -57,6 +50,4 @@ public abstract class Postac{
     {
         this.hp+= change;
     }
-
-
 }

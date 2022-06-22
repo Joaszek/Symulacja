@@ -8,9 +8,9 @@ public class Research {
     private String line;
     private String[] split;
     private static int k=1;
-    private static final int n = 4;     //to jest liczba parametrow
+    private static final int n = 6;     //to jest liczba parametrow
     private static int [] parameters = new int[n];
-    public Research(int ite){
+    public Research(){
         try{
 
             Scanner f = new Scanner(new File ("C:/Users/Bartek/Downloads/piwo2.txt"));   //jak chcesz robic u sb to zmien lokalizacje I NIE WRZUCAJ CSV BO SIE WYWALA
@@ -19,7 +19,7 @@ public class Research {
             this.split = line.split(",");
             for(int i = 0; i<n; i++){
                 System.out.println(split[i]);
-                parameters[i] = Integer.parseInt(split[i]);      //trim zostawie na razie, idk czy bedzie potrzebny
+                parameters[i] = Integer.parseInt(split[i]);
                 //System.out.println(parameters[i]);
             }
         }
@@ -29,12 +29,15 @@ public class Research {
         k++;
     }
 
-    public static void saveTxt(){
+    public static void saveTxt(Bohater PEPE){
         try {
             FileWriter save = new FileWriter(results, true);
             save.append(Map.getflowers() + " ");
             save.append(Map.getologs() + " ");
-            save.append(Map.getorks() + "\n");
+            save.append(Map.getorks() + " ");
+            save.append(String.valueOf(PEPE.get_attack()) + " ");
+            save.append(String.valueOf(PEPE.get_hp()) + " ");
+            save.append(String.valueOf(PEPE.isHas_ring()) + "\n");
             save.close();
         }
         catch(IOException h){

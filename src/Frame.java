@@ -102,9 +102,4 @@ public class Frame extends JFrame {
             }
         }
     }
-    public void check_pool()
-    {
-
-    }
-
 }

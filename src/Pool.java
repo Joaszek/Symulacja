@@ -15,16 +15,18 @@ public class Pool {
     Ring ring;
     Babcia_MAD babcia_mad;
     Babcia_Sida babcia_sidas;
-    ArrayList<Ork> Orks;
-    ArrayList<Olog> Ologs;
+    ArrayList<Ring> rings;
+    ArrayList<Ork> orks;
+    ArrayList<Olog> ologs;
     ArrayList<Bohater> bohater;
     Random random = new Random();
     Pool()
     {
         is_empty=true;
-        Orks = new ArrayList<>();
-        Ologs = new ArrayList<>();
+        orks = new ArrayList<>();
+        ologs = new ArrayList<>();
         bohater = new ArrayList<>();
+        rings = new ArrayList<>();
     }
 //z czterech metod zrobić jedną
     public boolean getbohater(){
@@ -32,11 +34,11 @@ public class Pool {
     }
 
     public boolean getork(){
-        return Orks.isEmpty();
+        return orks.isEmpty();
     }
 
     public boolean getolog(){
-        return Ologs.isEmpty();
+        return ologs.isEmpty();
     }
 
     public boolean check()
@@ -46,39 +48,6 @@ public class Pool {
         {
             return false;
         }
-    }
-
-
-    public void set_Orks()
-    {
-        is_empty=false;
-    }
-    public void set_Ologs()
-    {
-        is_empty=false;
-    }
-    public void set_Flowers()
-    {
-        is_empty=false;
-    }
-    public void set_Babcia_MAD()
-    {
-        is_empty=false;
-    }
-    public void set_Items()
-    {
-        is_empty=false;
-    }
-    public void set_Bohater()
-    {
-        is_empty=false;
-    }
-
-
-    public int get_rand()       //co to robi?
-    {
-        rand = random.nextInt(8);
-        return rand;
     }
     public void setBabcia_mad(Babcia_MAD babcia_mad)
     {
