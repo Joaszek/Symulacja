@@ -220,15 +220,6 @@ public class Map {
             set_Colors();
             second_frame.change_data();
         }
-        for(Ork orc: orcs){
-            System.out.println(orc.get_hp());
-        }
-       /* System.out.println("Kills: "+PEPE.getKills());
-        System.out.println("MR: "+PEPE.magic_resist);
-        System.out.println("Armor"+PEPE.armor);
-        System.out.println("Attack"+PEPE.get_attack());
-        System.out.println("Flowers eaten: "+cflowers);
-        System.out.println("Koniec");*/
         Research.saveTxt(PEPE);
     }
     private void setMap()
